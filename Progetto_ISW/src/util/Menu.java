@@ -9,8 +9,7 @@ package util;
  */
 public class Menu {
 	final private static String CORNICE = "--------------------------------";
-	final private static String VOCE_P_PRECEDENTE = "0\tRitorna alla pagina precedente";
-	final private static String VOCE_USCITA = "00\tEsci dal programma";
+	final private static String VOCE_USCITA = "0\tEsci dal programma";
 	final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
 
 	private String titolo;
@@ -34,7 +33,6 @@ public class Menu {
 			System.out.println((i + 1) + "\t" + voci[i]);
 		}
 		System.out.println();
-		System.out.println(VOCE_P_PRECEDENTE);
 		System.out.println(VOCE_USCITA);
 		System.out.println();
 	}

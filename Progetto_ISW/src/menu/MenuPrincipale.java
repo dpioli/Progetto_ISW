@@ -23,11 +23,12 @@ public class MenuPrincipale{
 	private static final String MSG_AUTENT_CONFIG = "\tAUTENTICAZIONE";
 	private static final String MSG_PRIMO_ACCESSO = "Registrati";
 	private static final String MSG_CONFIG_REGISTRATO= "Accedi";
-	private final static String MSG_P_PRECEDENTE = "Ritorna alla pagina precedente.";
+	private final static String MSG_P_PRECEDENTE = "Ritorna alla pagina iniziale";
 
 	private static final int CASE_PRIMO_ACCESSO = 1;
 	private static final int CASE_ACCESSO = 2;
-	private String[] vociConfiguratore = {MSG_PRIMO_ACCESSO, MSG_CONFIG_REGISTRATO};
+	private static final int CASE_P_INIZIALE = 3;
+	private String[] vociConfiguratore = {MSG_PRIMO_ACCESSO, MSG_CONFIG_REGISTRATO, MSG_P_PRECEDENTE};
 	
 	/**
 	 * Voci Menu Configuratore
@@ -38,9 +39,8 @@ public class MenuPrincipale{
 	private static final int CASE_V_GERARCHIE = 4;
 	private static final int CASE_V_FAT_CONV = 5;
 	private static final int CASE_SALVA = 6;
-	
-	private static final int CASE_P_PRECEDENTE = 0;
-	private static final int CASE_USCITA = 00;
+	private static final int CASE_P_AUTENTICAZIONE = 7;
+	private static final int CASE_USCITA = 0;
 
 	/**
 	 * Costruttore della pagina iniziale del programma
@@ -86,12 +86,12 @@ public class MenuPrincipale{
 					avviaMenuConfiguratore(menuConfig);
 				}
 				break;
-			case  CASE_P_PRECEDENTE:
-				return;
+			case  CASE_P_INIZIALE:
+				break;
 			default:
-				System.exit(00);
+				System.exit(CASE_USCITA);
 			}
-		} while (scelta != CASE_USCITA);
+		} while (scelta != CASE_P_INIZIALE);
 	}
 	
 	
@@ -122,12 +122,12 @@ public class MenuPrincipale{
 			case CASE_SALVA:
 				menuConfig.salva();
 				break;
-			case  CASE_P_PRECEDENTE:
-				return;
+			case  CASE_P_AUTENTICAZIONE:
+				break;
 			default:
-				System.exit(00);
+				System.exit(CASE_USCITA);
 			}
-		} while (scelta != CASE_P_PRECEDENTE);
+		} while (scelta != CASE_P_AUTENTICAZIONE);
 	}
 
 }
