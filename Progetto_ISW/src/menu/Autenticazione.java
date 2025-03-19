@@ -43,14 +43,15 @@ public class Autenticazione {
 	}
 	
 	/**
-	 * Metodo che permette di accedere alle funzionalita' di un configuratore
+	 * Metodo che permette di accedere alle funzionalita' di un configuratore.
+	 * Se rileva a un primo accesso rimanda alla pagina di registrazione.
 	 * @return Configuratore
 	 */
 	public Configuratore accessoConfiguratore() {
 		String username = InputDati.leggiStringaNonVuota(MSG_ASK_USERNAME);
 		String password = InputDati.leggiStringaNonVuota(MSG_ASK_PASSWORD);
 		
-		if(username.equals(USERNAME_PREDEFINITO) && password.equals(PASSWORD_PREDEFINITA)) {
+		if(rilevaPrimoAccesso(username, password)) {
 			System.out.println(MSG_PRIMO_ACCESSO);
 			primoAccessoConfig();
 		} 
@@ -67,43 +68,86 @@ public class Autenticazione {
 		return null;
 	}
 	
-	/**
-	 * Metodo per registrarsi all'interno del programma
+	/***
+	 * METODO PER REGISTRARSI PER LA PRIMA VOLTA COME CONFIGUTATORE
+	 * 1. Controlla che abbia i permessi.
+	 * 2. Inserimento nuove credenziali.
+	 * 3. Salvaraggio.
 	 */
 	public void primoAccessoConfig() {
-		boolean predefinito = false;
+		
+		controllaPredefinite();
+			
+		System.out.println(MSG_NEW_CREDENZIALI);
+		String newUsername = inserisciUsername();
+		String newPassword = InputDati.leggiStringaNonVuota(MSG_NEW_PASSWORD);
+		
+		logica.addConfiguratore(new Configuratore(newUsername, newPassword));
+		GestorePersistenza.salvaConfiguratori(logica.getConfiguratori());
+	}
+	
+	/***
+	 * Metodo che controlla se l'username inserito è già presente nel sistema.
+	 * @param username da controllare
+	 * @return true se trova corrispondenza nei configuratori salvati
+	 */
+	public boolean ePresenteConfiguratore(String username) {
+		for(Configuratore c: logica.getConfiguratori()) {
+			if(c.getUsername().equals(username)) {
+				System.out.println(MSG_NON_VALIDO);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/***
+	 * Metodo che si assicura che l'utente, che cerca di accedere come configuratore, inserisca l'username e la password predefinita 
+	 * (controlla quindi che abbia l'autorizzazione per accedere).
+	 */
+	public void controllaPredefinite() {
+		boolean predefinito;
 		do {
 			String username = InputDati.leggiStringaNonVuota(MSG_ASK_USERNAME);
 			String password = InputDati.leggiStringaNonVuota(MSG_ASK_PASSWORD);
-			if(!(username.equals(USERNAME_PREDEFINITO) && password.equals(PASSWORD_PREDEFINITA))) {
-				System.out.println(MSG_ERRORE);
-				predefinito = false;
-			} else {
-				predefinito = true;
-			}
-		} while(!predefinito);
-			
-		System.out.println(MSG_NEW_CREDENZIALI);
+			predefinito = rilevaPrimoAccesso(username, password);
+		}while(!predefinito);
+	}
+	
+	/***
+	 * Metodo che controlla se username e password inseriti corrispondono a quelli predefiniti.
+	 * @param username
+	 * @param password
+	 * @return true se la corrispondenza è vera
+	 */
+	public boolean rilevaPrimoAccesso(String username, String password) {
+		if(username.equals(USERNAME_PREDEFINITO) && password.equals(PASSWORD_PREDEFINITA)) {
+			System.out.println("\nSembra che tu non sia ancora registrato!\nREGISTRATI >");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/***
+	 * Metodo per ricezione stringa di input del nuovo username.
+	 * Controlla che la stringa non sia vuota e che non coincida con l'username predefinito del configuratore.
+	 * @return stringa username
+	 */
+	public String inserisciUsername() {
 		boolean corretto = false;
 		String newUsername = "";
-		while(!corretto) {
-			corretto = true;
+		do {
 			newUsername = InputDati.leggiStringaNonVuota(MSG_NEW_USERNAME);
-			if(newUsername.equals(USERNAME_PREDEFINITO)) {
+			if(!newUsername.equals(USERNAME_PREDEFINITO)) {
 				System.out.println(MSG_NON_VALIDO);
-				corretto = false;
+				corretto = true;
 			} else {
-				for(Configuratore c: logica.getConfiguratori()) {
-					if(c.getUsername().equals(newUsername))
-						System.out.println(MSG_NON_VALIDO);
-					corretto = false;
-					break;
-				}
+				if(!ePresenteConfiguratore(newUsername))
+					corretto = true;
 			}
-		} 
-		String newPassword = InputDati.leggiStringaNonVuota(MSG_NEW_PASSWORD);
-		logica.addConfiguratore(new Configuratore(newUsername, newPassword));
-		GestorePersistenza.salvaConfiguratori(logica.getConfiguratori());
+		} while(!corretto);
+		return newUsername;
 	}
 		
 	
