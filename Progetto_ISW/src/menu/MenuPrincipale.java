@@ -23,6 +23,8 @@ public class MenuPrincipale{
 	private static final String MSG_AUTENT_CONFIG = "\tAUTENTICAZIONE";
 	private static final String MSG_PRIMO_ACCESSO = "Registrati";
 	private static final String MSG_CONFIG_REGISTRATO= "Accedi";
+	private final static String MSG_P_PRECEDENTE = "Ritorna alla pagina precedente.";
+
 	private static final int CASE_PRIMO_ACCESSO = 1;
 	private static final int CASE_ACCESSO = 2;
 	private String[] vociConfiguratore = {MSG_PRIMO_ACCESSO, MSG_CONFIG_REGISTRATO};
@@ -37,6 +39,9 @@ public class MenuPrincipale{
 	private static final int CASE_V_FAT_CONV = 5;
 	private static final int CASE_SALVA = 6;
 	
+	private static final int CASE_P_PRECEDENTE = 0;
+	private static final int CASE_USCITA = 00;
+
 	/**
 	 * Costruttore della pagina iniziale del programma
 	 * @param logica
@@ -47,9 +52,8 @@ public class MenuPrincipale{
 	}
 	
 	/**
-	 * Metodo per mostrare le azioni che un utente puo' svolgere
+	 * Metodo per mostrare le azioni che un utente puo' svolgere.
 	 */
-	
 	public void azioniMenuPrincipale() {
 		int scelta;
 		do {
@@ -57,16 +61,14 @@ public class MenuPrincipale{
 			switch(scelta) {
 			case CASE_CONFIGURATORE:
 				autenticazioneConfig();
-				break;
-				
+				break;			
 			}
-		} while (scelta != 0);
+		} while (scelta != CASE_USCITA );
 	}
 	
 	/**
-	 * Metodo per autenticare l'utente come configuratore o registrarsi come tale
+	 * Metodo per autenticare l'utente come configuratore o registrarsi come tale.
 	 */
-	
 	private void autenticazioneConfig() {
 		Autenticazione autentic = new Autenticazione(logica);
 		Menu menuAccessoConfig = new Menu(MSG_AUTENT_CONFIG, vociConfiguratore);
@@ -84,10 +86,12 @@ public class MenuPrincipale{
 					avviaMenuConfiguratore(menuConfig);
 				}
 				break;
-			default:
+			case  CASE_P_PRECEDENTE:
 				return;
+			default:
+				System.exit(00);
 			}
-		} while (scelta != 0);
+		} while (scelta != CASE_USCITA);
 	}
 	
 	
@@ -118,10 +122,12 @@ public class MenuPrincipale{
 			case CASE_SALVA:
 				menuConfig.salva();
 				break;
-			default:
+			case  CASE_P_PRECEDENTE:
 				return;
+			default:
+				System.exit(00);
 			}
-		} while (scelta != 0);
+		} while (scelta != CASE_P_PRECEDENTE);
 	}
 
 }

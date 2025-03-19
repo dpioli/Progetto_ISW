@@ -29,6 +29,8 @@ public class MenuConfiguratore extends Menu{
 	private final static String MSG_VISUALIZZA_GERARCHIE = "Visualizza tutte le gerarchie";
 	private final static String MSG_VISUALIZZA_FAT_CONV = "Visualizza tutti i fattori di conversione";
 	private final static String MSG_SALVA = "Salva tutte le modifiche effettuate";
+	//private final static String MSG_P_PRECEDENTE = "Ritorna alla pagina precedente.";
+	
 	
 	private static final String MSG_CREAZIONE_COMPRENSORIO = "Stai creando un nuovo comprensorio, inserisci" 
 								+ " le informazioni necessarie";
@@ -46,7 +48,7 @@ public class MenuConfiguratore extends Menu{
 			MSG_VISUALIZZA_COMPRENSORI,
 			MSG_VISUALIZZA_GERARCHIE,
 			MSG_VISUALIZZA_FAT_CONV,
-			MSG_SALVA
+			MSG_SALVA,
 	};
 	
 	/**
