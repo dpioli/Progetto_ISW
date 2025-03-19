@@ -113,6 +113,10 @@ public class LogicaPersistenza {
 	public void addConfiguratore(Configuratore configuratore) {
 		configuratori.add(configuratore);
 	}
+
+	public void addComprensorio(Comprensorio comprensorio) {
+		comprensori.add(comprensorio);
+	}
 	
 	
 
