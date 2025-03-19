@@ -24,7 +24,7 @@ public class Autenticazione {
 	private static final String MSG_ASK_USER_PREDEF = "Inserisci l'username predefinito > ";
 	private static final String MSG_ASK_PSW_PREDEF = "Inserisci la password predefinita > ";
 	
-	private static final String UTENTE_NON_PRESENTE = "Queso utente non è presente nel sistema. \nTornando indietro...";
+	private static final String UTENTE_NON_PRESENTE = "Questo utente non è presente nel sistema. \nTornando indietro...";
 	private static final String PSW_ERRATA = "Password errata. (ESC per uscire) ";
 
 	private static final String MSG_NEW_CREDENZIALI = "Inserisci le nuove credenziali di seguito\n\n";
@@ -58,14 +58,14 @@ public class Autenticazione {
 	 */
 	public Configuratore accessoConfiguratore() {
 		String username = InputDati.leggiStringaNonVuota(MSG_ASK_USERNAME);
-		String password = InputDati.leggiStringaNonVuota(MSG_ASK_PASSWORD);
+		String password;
 		
-		if(richiedeUscita(username) || richiedeUscita(password)) {
+		if(richiedeUscita(username)) {
 			System.out.println(RILEVATA_RICHIESTA_DI_USCITA);
 			return null;
 		}
 		
-		if(rilevaPrimoAccesso(username, password)) {
+		if(username.equals(USERNAME_PREDEFINITO)) {
 			System.out.println(MSG_RILEVA_PRIMO_ACCESSO);
 			primoAccessoConfig();
 		} 
@@ -81,11 +81,9 @@ public class Autenticazione {
 						System.out.println(PSW_ERRATA);
 					}
 				}while(!richiedeUscita(password));
-			}else {
-				System.out.println(UTENTE_NON_PRESENTE);
 			}
 		}
-		//System.out.println(MSG_ERRORE);	
+		System.out.println(UTENTE_NON_PRESENTE);
 		return null;
 	}
 	
