@@ -84,6 +84,8 @@ public class MenuPrincipale{
 				if(config != null) {
 					MenuConfiguratore menuConfig = new MenuConfiguratore(config, logica);
 					avviaMenuConfiguratore(menuConfig);
+				} else {
+					scelta = CASE_P_INIZIALE;
 				}
 				break;
 			case  CASE_P_INIZIALE:
