@@ -46,7 +46,11 @@ public class MenuConfiguratore extends Menu {
 			+ " le informazioni necessarie";
 
 	private static final String MSG_SALVATAGGIO = "Salvataggio effettuato con successo!";
-
+	
+	private static final String NESSUN_COMPRENSORIO = "Non è ancora presente nessun comprensorio";
+	private static final String NESSUNA_GERARCHIA = "Non è ancora presente nessuna gerarchia";
+	private static final String NESSUN_FAT_CONVERSIONE = "Non è ancora presente nessun fattore di conversione";
+	
 	private static String[] vociConfig = {MSG_NUOVO_COMPRENSORIO,
 			MSG_NUOVA_GERARCHIA,
 			MSG_VISUALIZZA_COMPRENSORI,
@@ -104,26 +108,39 @@ public class MenuConfiguratore extends Menu {
 
 	public void creaGerarchia() {
 		System.out.println(MSG_CREAZIONE_GERARCHIA);
+		
 
 	}
 
 	public void visualizzaComprensori() {
 		ArrayList<Comprensorio> comprensori = logica.getComprensori();
-		for (Comprensorio c : comprensori) {
-			c.toString();
+		if(comprensori == null) {
+			System.out.println(NESSUN_COMPRENSORIO);
+		} else {
+			for (Comprensorio c : comprensori) {
+				System.out.println(c.toString());
+			}
 		}
+			
+		
 	}
 
 	public void visualizzaGerarchie() {
 		ArrayList<Gerarchia> gerarchie = logica.getGerarchie();
-		for (Gerarchia g : gerarchie) {
-			g.toString();
+		if(gerarchie == null) {
+			System.out.println(NESSUNA_GERARCHIA);
+		} else {
+			for (Gerarchia g : gerarchie) {
+				System.out.println(g.toString());
+			}
 		}
-
 	}
 
 	public void visualizzaFatConv() {
 		ArrayList<FatConversione> fatConvers = logica.getFatConversione();
+		if(fatConvers == null) {
+			System.out.println(NESSUN_FAT_CONVERSIONE);
+		}
 		for (FatConversione fc : fatConvers) {
 			fc.toString();
 		}

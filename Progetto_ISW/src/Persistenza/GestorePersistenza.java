@@ -58,11 +58,12 @@ public class GestorePersistenza {
 	private static <T> T carica(Type typeOfT, String fpath) {
 	    T oggetto = null;
 	    try (FileReader rd = new FileReader(fpath)){
-	    	System.out.println("Contenuto del file JSON:");
+	    	//System.out.println("Contenuto del file JSON:");
 	        oggetto = gson.fromJson(rd, typeOfT);
-	        if(oggetto == null) {
+	        /*if(oggetto == null) {
 	        	System.out.println("gson.fromJson() returned null.");
 	        }
+	        */
 	    } catch (IOException e) {
 	        System.err.println("Errore durante il caricamento: " + e.getMessage());
 	    }
@@ -138,7 +139,11 @@ public class GestorePersistenza {
 	 */
 	public static ArrayList<Gerarchia> caricaGerarchie(){
 	    Type listType = new TypeToken<ArrayList<Gerarchia>>() {}.getType();
-	    return carica(listType, FILE_GERARCHIE);
+	    ArrayList<Gerarchia> gerarchie = carica(listType, FILE_GERARCHIE);
+	    if(gerarchie == null) {
+	    	return new ArrayList<Gerarchia>();
+	    }
+	    return gerarchie;
 	}
 
 	
@@ -148,11 +153,9 @@ public class GestorePersistenza {
 	 */
 	public static ArrayList<Comprensorio> caricaComprensorio(){
 	    Type listType = new TypeToken<ArrayList<Comprensorio>>() {}.getType();
-	    //return carica(listType, FILE_COMPRENSORI);
 	    ArrayList<Comprensorio> comprensori = carica(listType, FILE_COMPRENSORI);
 	    if (comprensori == null) {
-	    	System.out.println("Il caricamento (listType,path) ha restituito un oggetto vuoto. ****");
-	        return new ArrayList<>();
+	        return new ArrayList<Comprensorio>();
 	    }
 	    return comprensori;
 	}
@@ -163,7 +166,11 @@ public class GestorePersistenza {
 	 */
 	public static ArrayList<Configuratore> caricaConfiguratori(){
 	    Type listType = new TypeToken<ArrayList<Configuratore>>() {}.getType();
-	    return carica(listType, FILE_CONFIGURATORI);
+	    ArrayList<Configuratore> configuratori = carica(listType, FILE_CONFIGURATORI);
+	    if(configuratori == null) {
+	    	return new ArrayList<Configuratore>();
+	    }
+	    return configuratori;
 	}
 	
 	/**
@@ -172,6 +179,10 @@ public class GestorePersistenza {
 	 */
 	public static ArrayList<FatConversione> caricaFatConversione(){
 	    Type listType = new TypeToken<ArrayList<FatConversione>>() {}.getType();
-	    return carica(listType, FILE_FATT_CONVERSIONE);
+	    ArrayList<FatConversione> fatConversione = carica(listType, FILE_FATT_CONVERSIONE);
+	    if(fatConversione == null) {
+	    	return new ArrayList<FatConversione>();
+	    }
+	    return fatConversione;
 	}
 }
