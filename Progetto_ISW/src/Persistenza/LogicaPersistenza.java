@@ -21,7 +21,8 @@ public class LogicaPersistenza {
 	
 	public LogicaPersistenza() {
 		this.gerarchie = (GestorePersistenza.caricaGerarchie() == null ) ? new  ArrayList<Gerarchia>() : GestorePersistenza.caricaGerarchie() ;
-		this.comprensori = (GestorePersistenza.caricaComprensorio() == null ) ? new  ArrayList<Comprensorio>() : GestorePersistenza.caricaComprensorio() ;
+		this.comprensori = GestorePersistenza.caricaComprensorio();
+		//this.comprensori = (GestorePersistenza.caricaComprensorio() == null ) ? new  ArrayList<Comprensorio>() : GestorePersistenza.caricaComprensorio() ;
 		this.configuratori = (GestorePersistenza.caricaConfiguratori() == null ) ? new  ArrayList<Configuratore>() : GestorePersistenza.caricaConfiguratori() ;
 		this.fatConversione = (GestorePersistenza.caricaFatConversione() == null ) ? new  ArrayList<FatConversione>() : GestorePersistenza.caricaFatConversione() ;
 	}

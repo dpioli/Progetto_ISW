@@ -58,7 +58,11 @@ public class GestorePersistenza {
 	private static <T> T carica(Type typeOfT, String fpath) {
 	    T oggetto = null;
 	    try (FileReader rd = new FileReader(fpath)){
+	    	System.out.println("Contenuto del file JSON:");
 	        oggetto = gson.fromJson(rd, typeOfT);
+	        if(oggetto == null) {
+	        	System.out.println("gson.fromJson() returned null.");
+	        }
 	    } catch (IOException e) {
 	        System.err.println("Errore durante il caricamento: " + e.getMessage());
 	    }
@@ -144,7 +148,13 @@ public class GestorePersistenza {
 	 */
 	public static ArrayList<Comprensorio> caricaComprensorio(){
 	    Type listType = new TypeToken<ArrayList<Comprensorio>>() {}.getType();
-	    return carica(listType, FILE_COMPRENSORI);
+	    //return carica(listType, FILE_COMPRENSORI);
+	    ArrayList<Comprensorio> comprensori = carica(listType, FILE_COMPRENSORI);
+	    if (comprensori == null) {
+	    	System.out.println("Il caricamento (listType,path) ha restituito un oggetto vuoto. ****");
+	        return new ArrayList<>();
+	    }
+	    return comprensori;
 	}
 	
 	/**
