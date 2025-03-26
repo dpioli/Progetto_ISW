@@ -1,0 +1,22 @@
+[
+  {
+    "id": 2,
+    "nome": "Lezioni Teoria SO",
+    "sottoCateg": []
+  },
+  {
+    "id": 2,
+    "nome": "Lezioni Esercizi SO",
+    "sottoCateg": []
+  },
+  {
+    "id": 2,
+    "nome": "Lezioni Teoria ImpInf",
+    "sottoCateg": []
+  },
+  {
+    "id": 2,
+    "nome": "Lezioni Esercizi ImpInf",
+    "sottoCateg": []
+  }
+]

@@ -2,6 +2,7 @@ package Persistenza;
 
 import java.util.ArrayList;
 
+import applicazione.CategoriaFoglia;
 import applicazione.Comprensorio;
 import applicazione.FatConversione;
 import applicazione.Gerarchia;
@@ -18,12 +19,14 @@ public class LogicaPersistenza {
 	private ArrayList<Comprensorio> comprensori = new ArrayList<Comprensorio>();
 	private ArrayList<Configuratore> configuratori = new ArrayList<Configuratore>();
 	private ArrayList<FatConversione> fatConversione = new ArrayList<FatConversione>();
+	private ArrayList<CategoriaFoglia> categorieFoglia = new ArrayList<CategoriaFoglia>();
 	
 	public LogicaPersistenza() {
 		this.gerarchie = GestorePersistenza.caricaGerarchie();
 		this.comprensori = GestorePersistenza.caricaComprensorio();
 		this.configuratori = GestorePersistenza.caricaConfiguratori();
 		this.fatConversione = GestorePersistenza.caricaFatConversione();
+		this.categorieFoglia = GestorePersistenza.caricaCategorieFoglia();
 	}
 	
 	/*
@@ -97,6 +100,14 @@ public class LogicaPersistenza {
 	public void setFatConversione(ArrayList<FatConversione> fatConversione) {
 		this.fatConversione = fatConversione;
 	}
+	
+	public ArrayList<CategoriaFoglia> getCategorieFoglia() {
+		return categorieFoglia;
+	}
+
+	public void setCategorieFoglia(ArrayList<CategoriaFoglia> categorieFoglia) {
+		this.categorieFoglia = categorieFoglia;
+	}
 
 	/*
 	 * 
@@ -106,6 +117,7 @@ public class LogicaPersistenza {
 	 * 
 	 */
 	
+
 	/**
 	 * Metoo per aggiungere un configuratore all'insieme dei configuratori
 	 * @param configuratore
@@ -116,6 +128,16 @@ public class LogicaPersistenza {
 
 	public void addComprensorio(Comprensorio comprensorio) {
 		comprensori.add(comprensorio);
+	}
+
+	public void addGerarchia(Gerarchia gerarchia) {
+		gerarchie.add(gerarchia);
+		
+	}
+
+	public void addCategoriaFoglia(CategoriaFoglia nuovaCategFoglia) {
+		categorieFoglia.add(nuovaCategFoglia);
+		
 	}
 	
 	

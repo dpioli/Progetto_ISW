@@ -1,1 +1,64 @@
-[]
+[
+  {
+    "catRadice": {
+      "nome": "Sistemi Operativi ed Impianti Informatici",
+      "sottoCateg": [
+        {
+          "nome": "Lezioni SO",
+          "sottoCateg": [
+            {
+              "id": 2,
+              "nome": "Lezioni Teoria SO",
+              "sottoCateg": []
+            },
+            {
+              "id": 2,
+              "nome": "Lezioni Esercizi SO",
+              "sottoCateg": []
+            }
+          ],
+          "campCaratt": {
+            "nomeCampo": "campo",
+            "valoriCampo": {
+              "Esercizi SO": "",
+              "Teoria SO": ""
+            }
+          }
+        },
+        {
+          "nome": "Lezioni ImpInf",
+          "sottoCateg": [
+            {
+              "id": 2,
+              "nome": "Lezioni Teoria ImpInf",
+              "sottoCateg": []
+            },
+            {
+              "id": 2,
+              "nome": "Lezioni Esercizi ImpInf",
+              "sottoCateg": []
+            }
+          ],
+          "campCaratt": {
+            "nomeCampo": "campo",
+            "valoriCampo": {
+              "Teoria ImpInf": "",
+              "Esercizi ImpInf": ""
+            }
+          }
+        }
+      ],
+      "campCaratt": {
+        "nomeCampo": "campo",
+        "valoriCampo": {
+          "Sistemi Operativi": "",
+          "Impianti Informatici": ""
+        }
+      }
+    },
+    "proprietario": {
+      "username": "DiegoP",
+      "password": "ProgettoISW"
+    }
+  }
+]

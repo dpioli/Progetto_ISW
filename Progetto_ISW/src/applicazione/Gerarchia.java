@@ -41,8 +41,10 @@ public class Gerarchia {
 	
 	public String toString() {
 		return String.format("Gerarchia: %s\n"
-				+ "Sottocatrgorie: %s", 
-					this.getCatRadice().getNome(), 
-					this.catRadice.toString());
+				+ "Campo Caratteristico: %s"
+				+ "\n\t Sottocategorie > \n\t\t%s", 
+					getCatRadice().getNome(), 
+					catRadice.getValoriCampo().keySet(),
+					catRadice.stampaCateg());
 	}
 }

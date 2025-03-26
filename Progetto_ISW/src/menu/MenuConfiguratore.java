@@ -1,9 +1,14 @@
 package menu;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 import Persistenza.GestorePersistenza;
 import Persistenza.LogicaPersistenza;
+import applicazione.CampoCaratteristico;
+import applicazione.Categoria;
+import applicazione.CategoriaFoglia;
+import applicazione.CategoriaNonFoglia;
 import applicazione.Comprensorio;
 import applicazione.FatConversione;
 import applicazione.Gerarchia;
@@ -18,7 +23,7 @@ import util.Menu;
  *
  */
 public class MenuConfiguratore extends Menu {
-
+	
 	private Configuratore config;
 	private LogicaPersistenza logica;
 
@@ -32,9 +37,11 @@ public class MenuConfiguratore extends Menu {
 	private static final String MSG_SALVA = "Salva tutte le modifiche effettuate";
 	private final static String MSG_P_PRECEDENTE = "Ritorna alla pagina di autenticazione";
 	
+	/**
+	 * CREAZIONE COMPRENSORIO
+	 */
 	private static final String MSG_CREAZIONE_COMPRENSORIO = "Stai creando un nuovo comprensorio, inserisci" 
 								+ " le informazioni necessarie";
-  
 	private static final String MSG_NOME_COMPRENSORIO = "Inserisci il nome del comprensorio > ";
 	private static final String MSG_NOME_COMP_NON_VALIDO = "Il nome inserito non è valido in quanto gia presente, riprova";
 	private static final String MSG_INSERISCI_COMUNI = "Inserisci il nome del comune (o 'fine' per terminare) > ";
@@ -42,14 +49,44 @@ public class MenuConfiguratore extends Menu {
 	private static final String MSG_ERRORE_INSERIMENTO_COMUNI = "Errore: Il comprensorio deve contenere almeno un comune.";
 	private static final String MSG_SUCCESSO_COMPRENSORIO = "Comprensorio creato con successo!";
 	
+	/**
+	 * CREAZIONE GERARCHIA
+	 */
 	private static final String MSG_CREAZIONE_GERARCHIA = "Stai creando una nuova gerarchie, inserisci"
 			+ " le informazioni necessarie";
-
-	private static final String MSG_SALVATAGGIO = "Salvataggio effettuato con successo!";
+	private static final String MSG_NOME_GERARCHIA = "Inserisci il nome della nuova gerarchia >";
+	private static final String MSG_NOME_GERARCHIA_NON_VALIDO = "E' già presente una gerarchia con questo nome.";
+	private static final String MSG_NOME_CAMPOCARATT = "Inserisci il nome del campo caratteristico > ";
+	private static final String MSG_VALORE_CAMPOCARATT = "Inserisci il valore ('fine' per terminare) > ";
+	private static final String MSG_INSERISCI_SOTTOCATEG = "Inserisci le sottocategorie della gerarchia appena creata:\n ";
+	private static final String MSG_GERARCHIA_CREATA_CON_SUCCESSO = "La gerarchia è stata creata con successo!";
 	
+	private static final String MSG_CERAZIONE_NODI = "Vuoi creare una categoria intermedia (1) o una foglia (2)? > ";
+	
+	private static final String MSG_CATEGORIA_NON_FOGLIA = "Stai creando una categroia intermedia:";
+	private static final String MSG_CATEGORIA_FOGLIA = "Stai creando una categoria foglia: ";
+	private static final String MSG_NOME_CATEGORIA = "Inserisci il nome della categoria >";
+	private static final String MSG_NOME_CATEGORIA_NON_VALIDO = "E' già presente una categoria con questo nome.";
+
+	/**
+	 * VISUALIZZA COMPRENSORI
+	 */
 	private static final String NESSUN_COMPRENSORIO = "Non è ancora presente nessun comprensorio";
+	
+	/**
+	 * VISUALIZZA GERARCHIE
+	 */
 	private static final String NESSUNA_GERARCHIA = "Non è ancora presente nessuna gerarchia";
+	
+	/**
+	 * VISUALIZZA FATTORI DI CONVERSIONE
+	 */
 	private static final String NESSUN_FAT_CONVERSIONE = "Non è ancora presente nessun fattore di conversione";
+	
+	/**
+	 * SALVATAGGIO DATI
+	 */
+	private static final String MSG_SALVATAGGIO = "Salvataggio effettuato con successo!";
 	
 	private static String[] vociConfig = {MSG_NUOVO_COMPRENSORIO,
 			MSG_NUOVA_GERARCHIA,
@@ -108,9 +145,37 @@ public class MenuConfiguratore extends Menu {
 
 	public void creaGerarchia() {
 		System.out.println(MSG_CREAZIONE_GERARCHIA);
+		String nomeGerarchia = InputDati.leggiStringaNonVuota(MSG_NOME_GERARCHIA);
+	
+		for(Gerarchia g: logica.getGerarchie()) {
+			if(g.eNomeUguale(nomeGerarchia)) {
+				System.out.println(MSG_NOME_GERARCHIA_NON_VALIDO);
+				return;
+			}
+		}
 		
+		String nomeCampo = InputDati.leggiStringaNonVuota(MSG_NOME_CAMPOCARATT);
+		ArrayList<String> valoriCampo = new ArrayList<>();
+		
+		boolean continua = true;
+		while(continua) {
+			String valore = InputDati.leggiStringaNonVuota(MSG_VALORE_CAMPOCARATT);
+			if(valore.equalsIgnoreCase(MSG_TERMINAZIONE)) {
+				continua = false;
+			} else {
+				valoriCampo.add(valore);
+			}
+		}
+		int dimensioneDominio = valoriCampo.size();
+		Gerarchia nuovaGerarchia = addGerarchia(nomeGerarchia, nomeCampo, valoriCampo, dimensioneDominio);
+		System.out.println(MSG_INSERISCI_SOTTOCATEG);
+		addSottoCategorie(nuovaGerarchia.getCatRadice());
+		logica.addGerarchia(nuovaGerarchia);
+		System.out.println(MSG_GERARCHIA_CREATA_CON_SUCCESSO);
+		GestorePersistenza.salvaGerarchie(logica.getGerarchie());
 
 	}
+
 
 	public void visualizzaComprensori() {
 		ArrayList<Comprensorio> comprensori = logica.getComprensori();
@@ -142,7 +207,7 @@ public class MenuConfiguratore extends Menu {
 			System.out.println(NESSUN_FAT_CONVERSIONE);
 		}
 		for (FatConversione fc : fatConvers) {
-			fc.toString();
+			System.out.println(fc.toString());
 		}
 	}
 
@@ -153,5 +218,87 @@ public class MenuConfiguratore extends Menu {
 		GestorePersistenza.salvaConfiguratori(logica.getConfiguratori());
 		System.out.println(MSG_SALVATAGGIO);
 	}
+	
+	
+	/*
+	 * 			ELABORAZIONE DATI CREAZIONE GERARCHIA
+	 */
+	
+	private Gerarchia addGerarchia(String nomeGerarchia, String nomeCampo, ArrayList<String> valoriCampo,
+			int dimensioneDominio) {
+		CampoCaratteristico campoCaratt = new CampoCaratteristico(nomeCampo);
+		campoCaratt.aggiungiValori(valoriCampo);
+		CategoriaNonFoglia radice = new CategoriaNonFoglia(nomeGerarchia, campoCaratt, null, dimensioneDominio);
+		Gerarchia nuovaGerarchia = new Gerarchia(radice, config);
+		logica.addGerarchia(nuovaGerarchia);
+		return nuovaGerarchia;
+	}
+	
+	private void addSottoCategorie(Categoria categoria) {
+		for(Entry<String, String> v: categoria.getValoriCampo().entrySet()) {
+			creaCategoria(categoria);
+		}
+		
+	}
+	
+	private void creaCategoria(Categoria radice) {
+		int scelta = InputDati.leggiIntero(MSG_CERAZIONE_NODI, 1, 2);
+		
+		switch(scelta) {
+		case 1:
+			creaCategoriaNonFoglia(radice);
+			break;
+		case 2:
+			creaCategoriaFoglia(radice);
+			break;
+		default:
+			return;
+		}
+	}
 
+	private void creaCategoriaNonFoglia(Categoria radice) {
+		System.out.println(MSG_CATEGORIA_NON_FOGLIA);
+		String nomeCatNonFl = InputDati.leggiStringaNonVuota(MSG_NOME_CATEGORIA);
+		for(Categoria c: radice.getSottoCateg()) {
+			if(c.eUguale(nomeCatNonFl)) {
+				System.out.println(MSG_NOME_CATEGORIA_NON_VALIDO);
+				return;
+			}
+		}
+		String nomeCampo = InputDati.leggiStringaNonVuota(MSG_NOME_CAMPOCARATT);
+		ArrayList<String> valoriCampo = new ArrayList<>();
+		
+		boolean continua = true;
+		while(continua) {
+			String valore = InputDati.leggiStringaNonVuota(MSG_VALORE_CAMPOCARATT);
+			if(valore.equalsIgnoreCase(MSG_TERMINAZIONE)) {
+				continua = false;
+			} else {
+				valoriCampo.add(valore);
+			}
+		}
+		int dimensioneDominio = valoriCampo.size();
+		CampoCaratteristico cC = new CampoCaratteristico(nomeCampo);
+		cC.aggiungiValori(valoriCampo);
+		CategoriaNonFoglia catNnFl = new CategoriaNonFoglia(nomeCatNonFl, cC, null, dimensioneDominio);
+		radice.getSottoCateg().add(catNnFl);
+		addSottoCategorie(catNnFl);
+		
+	}
+
+	private void creaCategoriaFoglia(Categoria radice) {
+		System.out.println(MSG_CATEGORIA_FOGLIA);
+		String nomeFoglia = InputDati.leggiStringaNonVuota(MSG_NOME_CATEGORIA);
+		for(Categoria c: radice.getSottoCateg()) {
+			if(c.eUguale(nomeFoglia)) {
+				System.out.println(MSG_NOME_CATEGORIA_NON_VALIDO);
+				return;
+			}
+		}
+		CategoriaFoglia nuovaCategFoglia = new CategoriaFoglia(nomeFoglia);
+		radice.getSottoCateg().add(nuovaCategFoglia);
+		logica.addCategoriaFoglia(nuovaCategFoglia);
+		GestorePersistenza.salvaCategorieFoglia(logica.getCategorieFoglia());
+		
+	}
 }

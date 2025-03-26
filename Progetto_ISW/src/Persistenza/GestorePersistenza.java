@@ -7,6 +7,7 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
+import applicazione.CategoriaFoglia;
 import applicazione.Comprensorio;
 import applicazione.FatConversione;
 import applicazione.Gerarchia;
@@ -24,6 +25,7 @@ public class GestorePersistenza {
 	private static final String FILE_GERARCHIE = "../Progetto_ISW/src/dati/gerarchie.json";
 	private static final String FILE_COMPRENSORI = "../Progetto_ISW/src/dati/comprensori.json";
 	private static final String FILE_FATT_CONVERSIONE = "../Progetto_ISW/src/dati/fattConversione.json";
+	private static final String FILE_CATEGORIEFOGLIA = "../Progetto_ISW/src/dati/categorieFoglia.json";
 	private static Gson gson;
 	
 	/**
@@ -125,6 +127,10 @@ public class GestorePersistenza {
 		salva(fatConversione, FILE_FATT_CONVERSIONE);
 	}
 	
+	public static void salvaCategorieFoglia(ArrayList<CategoriaFoglia> categorieFoglia) {
+		salva(categorieFoglia, FILE_CATEGORIEFOGLIA);
+	}
+	
 	/*
 	 * 
 	 * 
@@ -184,5 +190,14 @@ public class GestorePersistenza {
 	    	return new ArrayList<FatConversione>();
 	    }
 	    return fatConversione;
+	}
+
+	public static ArrayList<CategoriaFoglia> caricaCategorieFoglia() {
+		Type listType = new TypeToken<ArrayList<CategoriaFoglia>>() {}.getType();
+		ArrayList<CategoriaFoglia> categorieFoglia = carica(listType, FILE_CATEGORIEFOGLIA);
+		if(categorieFoglia == null) {
+			return new ArrayList<CategoriaFoglia>();
+		}
+		return categorieFoglia;
 	}
 }

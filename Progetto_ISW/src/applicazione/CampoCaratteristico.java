@@ -14,13 +14,6 @@ public class CampoCaratteristico {
 	public HashMap<String, String> valoriCampo;
 	
 	/**
-	 * Construttore CampoCaratteristico nullo
-	 */
-	public CampoCaratteristico() {
-		
-	}
-	
-	/**
 	 * Costruttore della classe CampoCaratteristico
 	 * @param nomeCampo
 	 */
@@ -43,7 +36,7 @@ public class CampoCaratteristico {
 	 */
 	public void aggiungiValori(ArrayList<String> valori) {
 		for(String v: valori) {
-			valoriCampo.put(v, null);
+			valoriCampo.put(v, "");
 		}
 	}
 	
@@ -67,7 +60,7 @@ public class CampoCaratteristico {
 	}
 	
 	public String toString() {
-		return String.format("%s --> %s", this.getNomeCampo(), this.getValori());
+		return String.format("%s --> %s", this.getNomeCampo(), this.getValori().keySet());
 	}
 
 }

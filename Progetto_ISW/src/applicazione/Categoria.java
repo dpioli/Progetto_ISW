@@ -1,6 +1,7 @@
 package applicazione;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Classe per andare a identificare le prorpieta' di una categoria
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 public class Categoria {
 	
 	private String nome;
-	private ArrayList<Categoria> sottoCateg;
 	private CampoCaratteristico campCaratt;
+	private ArrayList<Categoria> sottoCateg;
 	private Boolean completo;
 	private Integer dominio;
 	
@@ -24,7 +25,7 @@ public class Categoria {
 	 */
 	public Categoria (String nome, CampoCaratteristico campCaratt, Boolean completo, Integer dominio) {
 		this.nome = nome;
-		this.campCaratt = new CampoCaratteristico();
+		this.campCaratt = campCaratt;
 		this.completo = completo;
 		this.sottoCateg = new ArrayList<>();
 	}
@@ -91,6 +92,17 @@ public class Categoria {
 		return false;
 	}
 	
+	public HashMap<String, String> getValoriCampo(){
+		return campCaratt.getValori();
+	}
+	
+	public String stampaCateg() {
+		for(Categoria c: this.sottoCateg) {
+				return c.toStirng();
+		}
+		return null;
+	}
+	
 	/**
 	 * Metodo che permette la visualizzazione di una categoria
 	 * (DA AGGIUSTARE)
@@ -98,11 +110,9 @@ public class Categoria {
 	 */
 	public String toStirng() {
 		return String.format("Categoria: %s\n"
-							+ "Campo caratteristico: %s\n"
-							+ "Sottocategorie: %s", 
+							+ "\t\tSottocategorie > \n\t\t\t%s", 
 							this.getNome(),
-							this.getCampCaratt().toString(),
-							this.getSottoCateg().toString());
+							this.stampaCateg());
 	}
 
 }
