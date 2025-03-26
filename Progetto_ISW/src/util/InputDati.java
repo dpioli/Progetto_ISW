@@ -153,6 +153,23 @@ public class InputDati {
 
 		return valoreLetto;
 	}
+	public static double leggiDoubleConMINeMAX(String messaggio, double minimo, double massimo) {
+		boolean finito = false;
+		double valoreLetto = 0;
+		do {
+			valoreLetto = leggiDouble(messaggio);
+			if (valoreLetto >= minimo)
+				finito = true;
+			else
+				System.out.println(ERRORE_MINIMO + minimo);
+			if(valoreLetto <= massimo)
+				finito = true;
+			else
+				System.out.println(ERRORE_MASSIMO + massimo);
+		} while (!finito);
+		
+		return valoreLetto;
+	}
 
 	public static boolean yesOrNo(String messaggio) {
 		String mioMessaggio = messaggio + "(" + RISPOSTA_SI + "/" + RISPOSTA_NO + ")";

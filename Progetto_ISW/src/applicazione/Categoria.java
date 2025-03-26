@@ -15,6 +15,7 @@ public class Categoria {
 	private ArrayList<Categoria> sottoCateg;
 	private Boolean completo;
 	private Integer dominio;
+	private boolean foglia;
 	
 	/**
 	 * Costruttore della classe categoria
@@ -23,11 +24,12 @@ public class Categoria {
 	 * @param completo
 	 * @param dominio
 	 */
-	public Categoria (String nome, CampoCaratteristico campCaratt, Boolean completo, Integer dominio) {
+	public Categoria (String nome, CampoCaratteristico campCaratt, Boolean completo, Integer dominio, boolean foglia) {
 		this.nome = nome;
 		this.campCaratt = campCaratt;
 		this.completo = completo;
 		this.sottoCateg = new ArrayList<>();
+		this.foglia = foglia;
 	}
 
 	public String getNome() {
@@ -68,6 +70,10 @@ public class Categoria {
 
 	public void setDominio(Integer dominio) {
 		this.dominio = dominio;
+	}
+	
+	public boolean eFoglia() {
+		return this.foglia;
 	}
 	
 	/**

@@ -2,62 +2,134 @@
   {
     "catRadice": {
       "nome": "Sistemi Operativi ed Impianti Informatici",
-      "sottoCateg": [
-        {
-          "nome": "Lezioni SO",
-          "sottoCateg": [
-            {
-              "id": 2,
-              "nome": "Lezioni Teoria SO",
-              "sottoCateg": []
-            },
-            {
-              "id": 2,
-              "nome": "Lezioni Esercizi SO",
-              "sottoCateg": []
-            }
-          ],
-          "campCaratt": {
-            "nomeCampo": "campo",
-            "valoriCampo": {
-              "Esercizi SO": "",
-              "Teoria SO": ""
-            }
-          }
-        },
-        {
-          "nome": "Lezioni ImpInf",
-          "sottoCateg": [
-            {
-              "id": 2,
-              "nome": "Lezioni Teoria ImpInf",
-              "sottoCateg": []
-            },
-            {
-              "id": 2,
-              "nome": "Lezioni Esercizi ImpInf",
-              "sottoCateg": []
-            }
-          ],
-          "campCaratt": {
-            "nomeCampo": "campo",
-            "valoriCampo": {
-              "Teoria ImpInf": "",
-              "Esercizi ImpInf": ""
-            }
-          }
-        }
-      ],
       "campCaratt": {
         "nomeCampo": "campo",
         "valoriCampo": {
           "Sistemi Operativi": "",
           "Impianti Informatici": ""
         }
-      }
+      },
+      "sottoCateg": [
+        {
+          "nome": "Lezioni SO",
+          "campCaratt": {
+            "nomeCampo": "campo",
+            "valoriCampo": {
+              "Esercizi SO": "",
+              "Teoria SO": ""
+            }
+          },
+          "sottoCateg": [
+            {
+              "nome": "Lezioni Teoria SO",
+              "sottoCateg": []
+            },
+            {
+              "nome": "Lezioni Esercizi SO",
+              "sottoCateg": []
+            }
+          ]
+        },
+        {
+          "nome": "Lezioni ImpInf",
+          "campCaratt": {
+            "nomeCampo": "campo",
+            "valoriCampo": {
+              "Teoria ImpInf": "",
+              "Esercizi ImpInf": ""
+            }
+          },
+          "sottoCateg": [
+            {
+              "nome": "Lezioni Teoria ImpInf",
+              "sottoCateg": []
+            },
+            {
+              "nome": "Lezioni Esercizi ImpInf",
+              "sottoCateg": []
+            }
+          ]
+        }
+      ]
     },
     "proprietario": {
       "username": "DiegoP",
+      "password": "ProgettoISW"
+    }
+  },
+  {
+    "catRadice": {
+      "nome": "GerarchiaEsempio",
+      "campCaratt": {
+        "nomeCampo": "3",
+        "valoriCampo": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        }
+      },
+      "sottoCateg": [
+        {
+          "nome": "Prima",
+          "campCaratt": {
+            "nomeCampo": "u",
+            "valoriCampo": {}
+          },
+          "sottoCateg": []
+        },
+        {
+          "id": 2,
+          "nome": "Foglia",
+          "sottoCateg": []
+        },
+        {
+          "id": 2,
+          "nome": "Foglia2",
+          "sottoCateg": []
+        }
+      ]
+    },
+    "proprietario": {
+      "username": "ErjonaM",
+      "password": "ProgettoISW"
+    }
+  },
+  {
+    "catRadice": {
+      "nome": "GerarchiaEsempio",
+      "campCaratt": {
+        "nomeCampo": "3",
+        "valoriCampo": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        }
+      },
+      "sottoCateg": [
+        {
+          "nome": "Prima",
+          "campCaratt": {
+            "nomeCampo": "u",
+            "valoriCampo": {}
+          },
+          "sottoCateg": []
+        },
+        {
+          "id": 2,
+          "nome": "Foglia",
+          "sottoCateg": []
+        },
+        {
+          "id": 2,
+          "nome": "Foglia2",
+          "sottoCateg": []
+        }
+      ]
+    },
+    "proprietario": {
+      "username": "ErjonaM",
       "password": "ProgettoISW"
     }
   }
