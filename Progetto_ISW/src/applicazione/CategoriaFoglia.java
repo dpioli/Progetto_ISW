@@ -11,7 +11,7 @@ public class CategoriaFoglia extends Categoria{
 
 	public CategoriaFoglia(String nome) {
 		super(nome, null, null, null);
-		this.id ++;
+		this.id = id +1;
 	}
 
 	public int getId() {

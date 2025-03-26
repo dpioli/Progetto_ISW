@@ -97,10 +97,11 @@ public class Categoria {
 	}
 	
 	public String stampaCateg() {
+		StringBuffer sb = new StringBuffer();
 		for(Categoria c: this.sottoCateg) {
-				return c.toStirng();
+			sb.append(c.toString());
 		}
-		return null;
+		return sb.toString();
 	}
 	
 	/**
@@ -108,7 +109,7 @@ public class Categoria {
 	 * (DA AGGIUSTARE)
 	 * @return descrizione categoria
 	 */
-	public String toStirng() {
+	public String toString() {
 		return String.format("Categoria: %s\n"
 							+ "\t\tSottocategorie > \n\t\t\t%s", 
 							this.getNome(),
