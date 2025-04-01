@@ -2,31 +2,49 @@
   {
     "id": 2,
     "nome": "Lezioni Teoria SO",
-    "sottoCateg": []
+    "sottoCateg": [],
+    "foglia": false
   },
   {
     "id": 2,
     "nome": "Lezioni Esercizi SO",
-    "sottoCateg": []
+    "sottoCateg": [],
+    "foglia": false
   },
   {
     "id": 2,
     "nome": "Lezioni Teoria ImpInf",
-    "sottoCateg": []
+    "sottoCateg": [],
+    "foglia": false
   },
   {
     "id": 2,
     "nome": "Lezioni Esercizi ImpInf",
-    "sottoCateg": []
+    "sottoCateg": [],
+    "foglia": false
   },
   {
     "id": 2,
     "nome": "Foglia",
-    "sottoCateg": []
+    "sottoCateg": [],
+    "foglia": false
   },
   {
     "id": 2,
     "nome": "Foglia2",
-    "sottoCateg": []
+    "sottoCateg": [],
+    "foglia": false
+  },
+  {
+    "id": 2,
+    "nome": "fogliaprova",
+    "sottoCateg": [],
+    "foglia": true
+  },
+  {
+    "id": 1,
+    "nome": "fogliaprova",
+    "sottoCateg": [],
+    "foglia": true
   }
 ]

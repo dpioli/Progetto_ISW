@@ -28,6 +28,15 @@ public class Categoria {
 		this.nome = nome;
 		this.campCaratt = campCaratt;
 		this.completo = completo;
+		this.dominio = dominio;
+		this.sottoCateg = new ArrayList<>();
+		this.foglia = foglia;
+	}
+	public Categoria (String nome, CampoCaratteristico campCaratt, Integer dominio, boolean foglia) {
+		this.nome = nome;
+		this.campCaratt = campCaratt;
+		this.completo = null;
+		this.dominio = dominio;
 		this.sottoCateg = new ArrayList<>();
 		this.foglia = foglia;
 	}

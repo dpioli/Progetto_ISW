@@ -7,11 +7,12 @@ package applicazione;
  */
 public class CategoriaFoglia extends Categoria{
 	
-	private int id = 1;
+	private static int conta = 0;
+	private int id;
 
 	public CategoriaFoglia(String nome) {
 		super(nome, null, null, null, true);
-		this.id = id +1;
+		this.id = ++conta;
 	}
 
 	public int getId() {

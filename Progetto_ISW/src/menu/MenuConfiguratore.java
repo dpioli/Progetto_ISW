@@ -202,13 +202,15 @@ public class MenuConfiguratore extends Menu {
 	}
 
 	public void visualizzaFatConv() {
-		ArrayList<FatConversione> fatConvers = logica.getFatConversione();
+		FatConversione fdc = logica.getFatConversione();
+		/*ArrayList<FatConversione> fatConvers = logica.getFatConversione();
 		if(fatConvers == null) {
 			System.out.println(NESSUN_FAT_CONVERSIONE);
 		}
 		for (FatConversione fc : fatConvers) {
 			System.out.println(fc.toString());
-		}
+		}*/
+		fdc.stampaFDC();
 	}
 
 	public void salva() {
@@ -225,10 +227,10 @@ public class MenuConfiguratore extends Menu {
 	 */
 	
 	private Gerarchia addGerarchia(String nomeGerarchia, String nomeCampo, ArrayList<String> valoriCampo,
-			int dimensioneDominio) {
+			Integer dimensioneDominio) {
 		CampoCaratteristico campoCaratt = new CampoCaratteristico(nomeCampo);
 		campoCaratt.aggiungiValori(valoriCampo);
-		CategoriaNonFoglia radice = new CategoriaNonFoglia(nomeGerarchia, campoCaratt, null, dimensioneDominio);
+		CategoriaNonFoglia radice = new CategoriaNonFoglia(nomeGerarchia, campoCaratt, dimensioneDominio);
 		Gerarchia nuovaGerarchia = new Gerarchia(radice, config);
 		logica.addGerarchia(nuovaGerarchia);
 		return nuovaGerarchia;
@@ -280,9 +282,9 @@ public class MenuConfiguratore extends Menu {
 		int dimensioneDominio = valoriCampo.size();
 		CampoCaratteristico cC = new CampoCaratteristico(nomeCampo);
 		cC.aggiungiValori(valoriCampo);
-		CategoriaNonFoglia catNnFl = new CategoriaNonFoglia(nomeCatNonFl, cC, null, dimensioneDominio);
-		radice.getSottoCateg().add(catNnFl);
-		addSottoCategorie(catNnFl);
+		CategoriaNonFoglia catNnF1 = new CategoriaNonFoglia(nomeCatNonFl, cC, dimensioneDominio);
+		radice.getSottoCateg().add(catNnF1);
+		addSottoCategorie(catNnF1);
 		
 	}
 
@@ -300,5 +302,10 @@ public class MenuConfiguratore extends Menu {
 		logica.addCategoriaFoglia(nuovaCategFoglia);
 		GestorePersistenza.salvaCategorieFoglia(logica.getCategorieFoglia());
 		
+		aggiungiFDC(nuovaCategFoglia.getId());
+		
+	}
+	private void aggiungiFDC(Integer nuova) {
+		logica.aggiungiFDC(nuova);
 	}
 }

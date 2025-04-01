@@ -18,8 +18,8 @@ public class LogicaPersistenza {
 	private ArrayList<Gerarchia> gerarchie = new ArrayList<Gerarchia>();
 	private ArrayList<Comprensorio> comprensori = new ArrayList<Comprensorio>();
 	private ArrayList<Configuratore> configuratori = new ArrayList<Configuratore>();
-	private ArrayList<FatConversione> fatConversione = new ArrayList<FatConversione>();
 	private ArrayList<CategoriaFoglia> categorieFoglia = new ArrayList<CategoriaFoglia>();
+	private FatConversione fatConversione = new FatConversione();
 	
 	public LogicaPersistenza() {
 		this.gerarchie = GestorePersistenza.caricaGerarchie();
@@ -89,7 +89,7 @@ public class LogicaPersistenza {
 	 * Metodo per ottenere l'insieme dei fattori di conversione
 	 * @return ArrayList<FatConversione>
 	 */
-	public ArrayList<FatConversione> getFatConversione() {
+	public FatConversione getFatConversione() {
 		return fatConversione;
 	}
 	
@@ -97,7 +97,7 @@ public class LogicaPersistenza {
 	 * Metodo per modificare l'insieme dei fattori di conversione
 	 * @param fatConversione
 	 */
-	public void setFatConversione(ArrayList<FatConversione> fatConversione) {
+	public void setFatConversione(FatConversione fatConversione) {
 		this.fatConversione = fatConversione;
 	}
 	
@@ -119,7 +119,7 @@ public class LogicaPersistenza {
 	
 
 	/**
-	 * Metoo per aggiungere un configuratore all'insieme dei configuratori
+	 * Metodo per aggiungere un configuratore all'insieme dei configuratori
 	 * @param configuratore
 	 */
 	public void addConfiguratore(Configuratore configuratore) {
@@ -139,7 +139,9 @@ public class LogicaPersistenza {
 		categorieFoglia.add(nuovaCategFoglia);
 		
 	}
-	
+	public void aggiungiFDC(Integer nuova) {
+		fatConversione.aggancia(nuova);	
+	}
 	
 
 }

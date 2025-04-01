@@ -6,9 +6,28 @@ import util.InputDati;
 
 public class FatConversione {
 	
-	private double[][] fdc = new double[0][0];
+	private ArrayList<ArrayList<Double>> fdc;
+	
 	private static double MAX_FDC = 2;
 	private static double MIN_FDC = 0.5;
+	
+	public FatConversione() {
+		fdc = new ArrayList<ArrayList<Double>>();
+	}
+	private void aggiungiRiga(Double id) {
+		ArrayList<Double> nuovaRiga = new ArrayList<>();
+		nuovaRiga.add(id);
+		for(int i = 1; i < fdc.size(); i++) {
+			nuovaRiga.add(0.0);
+		}
+		fdc.add(nuovaRiga);
+	}
+	private void aggiungiColonna(Double id) {
+		fdc.get(0).add(id);
+		for(int i = 1; i < fdc.size(); i++) {
+			fdc.get(i).add(0.0);
+		}
+	}
 	/**
 	 * per calcolare fdc(Gerarchia nuova, Gerarchia bersaglio, fdc)
 	 * se ho solo due foglie
@@ -45,7 +64,7 @@ max=Math.min(max, maxFdc/x.getSecond());
 }
 return max;
 }*/
-	private double calcolaMAX(double[] ramiUscenti) {
+	private double calcolaMAX(ArrayList<Double> ramiUscenti) {
 		Double max = MAX_FDC;
 		for(Double d : ramiUscenti) {
 			max = Math.min(max, MAX_FDC / d);
@@ -61,26 +80,50 @@ return max;
 	return min;
 
 	}*/
-	private double calcolaMIN(double[] ramiUscenti) {
+	private double calcolaMIN(ArrayList<Double> ramiUscenti) {
 		Double min = MIN_FDC;
 		for(Double d: ramiUscenti) {
 			min = Math.max(min, MIN_FDC / d);
 		}
 		return min;
 	}
+	
 	public void aggancia(Integer nuova) {
-		double max = calcolaMAX(fdc[nuova]);
-		double min = calcolaMIN(fdc[nuova]);
+		Double id = nuova.doubleValue();
+		aggiungiRiga(id);
+		aggiungiColonna(id);
+		aggiornaValori(nuova);
 		
+	}
+	
+	private void aggiornaValori(Integer nuova) {
+		ArrayList<Double> ramiUscenti = fdc.get(nuova-1);
+		
+		double max = calcolaMAX(ramiUscenti);
+		double min = calcolaMIN(ramiUscenti);
 		double k = InputDati.leggiDoubleConMINeMAX("Inserire valore fattore di conversione associato a 1 or whateva", min, max);
-		//aggancio alla categoria 1
-		fdc[nuova][1] = k;
-		fdc[1][nuova] = 1/k;
-		for(int i = 2; i < nuova; i++) {
-			fdc[nuova][i] = fdc[nuova][1]*fdc[1][i];
-			fdc[i][nuova] = 1/fdc[nuova][i];
-		}
 		
+		//LAVORO SU RIGA
+		//aggancio alla categoria 1 ***********************************SISTEMA QUI
+		fdc.get(nuova).set(1, k);
+		fdc.get(1).set(nuova, 1 / k);
+
+		//LAVORO SU COLONNA
+		for(int i = 1; i < nuova; i++) {
+			//fdc[nuova][i] = fdc[nuova][1]*fdc[1][i];
+			double valore = fdc.get(nuova).get(1) * fdc.get(1).get(i);
+			fdc.get(nuova).set(i, valore);
+			//fdc[i][nuova] = 1/fdc[nuova][i];
+			double invertito = 1 / valore;
+			fdc.get(i).set(nuova, invertito);
+		}
+	}
+	
+	public void stampaFDC() {
+		if(fdc.equals(null))
+			System.out.println("Nessun fattore di conversione presente");
+		else
+			System.out.println(this.toString());
 	}
 	/**
 	 
@@ -102,7 +145,7 @@ return max;
 	//HashMap<CategoriaFoglia, double>();
 	
 	public String toString() {
-		return String.format("STSMPA FAT CONVERSIONE > ", null);
+		return String.format("STAMPA FAT CONVERSIONE > \n%s", fdc.toString());
 	}
 
 }

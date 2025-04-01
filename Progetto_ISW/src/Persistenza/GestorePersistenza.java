@@ -59,6 +59,11 @@ public class GestorePersistenza {
 	 */
 	private static <T> T carica(Type typeOfT, String fpath) {
 	    T oggetto = null;
+	    File file = new File(fpath);
+	    if (!file.exists()) {
+	    	System.err.println("File non trovato: " + fpath);
+	    	return null;
+	    }
 	    try (FileReader rd = new FileReader(fpath)){
 	    	//System.out.println("Contenuto del file JSON:");
 	        oggetto = gson.fromJson(rd, typeOfT);
@@ -123,7 +128,7 @@ public class GestorePersistenza {
 	 * Metodo per salvare i fattori di conversione
 	 * @param fatConversione
 	 */
-	public static void salvaFatConversione(ArrayList<FatConversione> fatConversione) {
+	public static void salvaFatConversione(FatConversione fatConversione) {
 		salva(fatConversione, FILE_FATT_CONVERSIONE);
 	}
 	
@@ -183,7 +188,7 @@ public class GestorePersistenza {
 	 * Metodo per caricare i fattori di conversione
 	 * @return insieme dei fattori di conversione
 	 */
-	public static ArrayList<FatConversione> caricaFatConversione(){
+	/*public static ArrayList<FatConversione> caricaFatConversione(){
 	    Type listType = new TypeToken<ArrayList<FatConversione>>() {}.getType();
 	    ArrayList<FatConversione> fatConversione = carica(listType, FILE_FATT_CONVERSIONE);
 	    if(fatConversione == null) {
@@ -191,7 +196,7 @@ public class GestorePersistenza {
 	    }
 	    return fatConversione;
 	}
-
+*/
 	public static ArrayList<CategoriaFoglia> caricaCategorieFoglia() {
 		Type listType = new TypeToken<ArrayList<CategoriaFoglia>>() {}.getType();
 		ArrayList<CategoriaFoglia> categorieFoglia = carica(listType, FILE_CATEGORIEFOGLIA);
@@ -199,5 +204,14 @@ public class GestorePersistenza {
 			return new ArrayList<CategoriaFoglia>();
 		}
 		return categorieFoglia;
+	}
+	public static FatConversione caricaFatConversione(){
+		Type listType = new TypeToken<FatConversione>() {}.getType();
+		FatConversione fatConversione = carica(listType, FILE_FATT_CONVERSIONE);
+		if(fatConversione == null) {
+			System.out.println("Non è stato trovato nessun dato trovato per i fattori di conversione.");
+			return new FatConversione();
+		}
+		return fatConversione;
 	}
 }
