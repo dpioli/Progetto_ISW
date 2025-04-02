@@ -48,3 +48,70 @@ public class Gerarchia {
 					catRadice.stampaCateg());
 	}
 }
+/*
+ *   {
+    "catRadice": {
+      "nome": "Sistemi Operativi ed Impianti Informatici",
+      "campCaratt": {
+        "nomeCampo": "campo",
+        "valoriCampo": {
+          "Sistemi Operativi": "",
+          "Impianti Informatici": ""
+        }
+      },
+      "sottoCateg": [
+        {
+          "nome": "Lezioni SO",
+          "campCaratt": {
+            "nomeCampo": "campo",
+            "valoriCampo": {
+              "Esercizi SO": "",
+              "Teoria SO": ""
+            }
+          },
+          "sottoCateg": [
+            {
+              "nome": "Lezioni Teoria SO",
+              "sottoCateg": [],
+              "foglia": false
+            },
+            {
+              "nome": "Lezioni Esercizi SO",
+              "sottoCateg": [],
+              "foglia": false
+            }
+          ],
+          "foglia": false
+        },
+        {
+          "nome": "Lezioni ImpInf",
+          "campCaratt": {
+            "nomeCampo": "campo",
+            "valoriCampo": {
+              "Teoria ImpInf": "",
+              "Esercizi ImpInf": ""
+            }
+          },
+          "sottoCateg": [
+            {
+              "nome": "Lezioni Teoria ImpInf",
+              "sottoCateg": [],
+              "foglia": false
+            },
+            {
+              "nome": "Lezioni Esercizi ImpInf",
+              "sottoCateg": [],
+              "foglia": false
+            }
+          ],
+          "foglia": false
+        }
+      ],
+      "foglia": false
+    },
+    "proprietario": {
+      "username": "DiegoP",
+      "password": "ProgettoISW"
+    }
+  }
+ * */

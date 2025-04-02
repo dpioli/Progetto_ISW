@@ -289,6 +289,7 @@ public class MenuConfiguratore extends Menu {
 	}
 
 	private void creaCategoriaFoglia(Categoria radice) {
+		
 		System.out.println(MSG_CATEGORIA_FOGLIA);
 		String nomeFoglia = InputDati.leggiStringaNonVuota(MSG_NOME_CATEGORIA);
 		for(Categoria c: radice.getSottoCateg()) {
@@ -297,7 +298,10 @@ public class MenuConfiguratore extends Menu {
 				return;
 			}
 		}
-		CategoriaFoglia nuovaCategFoglia = new CategoriaFoglia(nomeFoglia);
+		int ultimoID = logica.recuperaUltimoID();
+		
+		CategoriaFoglia nuovaCategFoglia = new CategoriaFoglia(nomeFoglia, ultimoID);
+		
 		radice.getSottoCateg().add(nuovaCategFoglia);
 		logica.addCategoriaFoglia(nuovaCategFoglia);
 		GestorePersistenza.salvaCategorieFoglia(logica.getCategorieFoglia());

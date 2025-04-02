@@ -19,7 +19,7 @@ public class LogicaPersistenza {
 	private ArrayList<Comprensorio> comprensori = new ArrayList<Comprensorio>();
 	private ArrayList<Configuratore> configuratori = new ArrayList<Configuratore>();
 	private ArrayList<CategoriaFoglia> categorieFoglia = new ArrayList<CategoriaFoglia>();
-	private FatConversione fatConversione = new FatConversione();
+	private FatConversione fatConversione;
 	
 	public LogicaPersistenza() {
 		this.gerarchie = GestorePersistenza.caricaGerarchie();
@@ -139,8 +139,17 @@ public class LogicaPersistenza {
 		categorieFoglia.add(nuovaCategFoglia);
 		
 	}
+	
 	public void aggiungiFDC(Integer nuova) {
 		fatConversione.aggancia(nuova);	
+	}
+	
+	public int recuperaUltimoID() {
+		if(categorieFoglia.isEmpty())
+			return 0;
+		int ultimo = categorieFoglia.size() - 1;
+		CategoriaFoglia f = categorieFoglia.get(ultimo);
+		return f.getId();
 	}
 	
 

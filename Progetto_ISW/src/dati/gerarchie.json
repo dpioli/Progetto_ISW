@@ -1,59 +1,65 @@
 [
   {
     "catRadice": {
-      "nome": "Sistemi Operativi ed Impianti Informatici",
+      "nome": "prova",
       "campCaratt": {
-        "nomeCampo": "campo",
+        "nomeCampo": "CC",
         "valoriCampo": {
-          "Sistemi Operativi": "",
-          "Impianti Informatici": ""
+          "due": "",
+          "uno": ""
         }
       },
       "sottoCateg": [
         {
-          "nome": "Lezioni SO",
-          "campCaratt": {
-            "nomeCampo": "campo",
-            "valoriCampo": {
-              "Esercizi SO": "",
-              "Teoria SO": ""
-            }
-          },
-          "sottoCateg": [
-            {
-              "nome": "Lezioni Teoria SO",
-              "sottoCateg": []
-            },
-            {
-              "nome": "Lezioni Esercizi SO",
-              "sottoCateg": []
-            }
-          ]
+          "id": 1,
+          "nome": "f1",
+          "sottoCateg": [],
+          "foglia": true
         },
         {
-          "nome": "Lezioni ImpInf",
-          "campCaratt": {
-            "nomeCampo": "campo",
-            "valoriCampo": {
-              "Teoria ImpInf": "",
-              "Esercizi ImpInf": ""
-            }
-          },
-          "sottoCateg": [
-            {
-              "nome": "Lezioni Teoria ImpInf",
-              "sottoCateg": []
-            },
-            {
-              "nome": "Lezioni Esercizi ImpInf",
-              "sottoCateg": []
-            }
-          ]
+          "id": 2,
+          "nome": "f2",
+          "sottoCateg": [],
+          "foglia": true
         }
-      ]
+      ],
+      "dominio": 2,
+      "foglia": false
     },
     "proprietario": {
-      "username": "DiegoP",
+      "username": "ErjonaM",
+      "password": "ProgettoISW"
+    }
+  },
+  {
+    "catRadice": {
+      "nome": "prova",
+      "campCaratt": {
+        "nomeCampo": "CC",
+        "valoriCampo": {
+          "due": "",
+          "uno": ""
+        }
+      },
+      "sottoCateg": [
+        {
+          "id": 1,
+          "nome": "f1",
+          "sottoCateg": [],
+          "foglia": true
+        },
+        {
+          "id": 2,
+          "nome": "f2",
+          "sottoCateg": [],
+          "foglia": true
+        }
+      ],
+      "dominio": 2,
+      "foglia": false
+    },
+    "proprietario": {
+      "username": "ErjonaM",
       "password": "ProgettoISW"
     }
   }

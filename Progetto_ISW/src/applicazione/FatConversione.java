@@ -11,9 +11,13 @@ public class FatConversione {
 	private static double MAX_FDC = 2;
 	private static double MIN_FDC = 0.5;
 	
-	public FatConversione() {
-		fdc = new ArrayList<ArrayList<Double>>();
+	public FatConversione(ArrayList<ArrayList<Double>> fdc) {
+		this.fdc = fdc;
 	}
+	public FatConversione() {
+		this.fdc = new ArrayList<ArrayList<Double>>();
+	}
+	
 	private void aggiungiRiga(Double id) {
 		ArrayList<Double> nuovaRiga = new ArrayList<>();
 		nuovaRiga.add(id);
@@ -22,6 +26,7 @@ public class FatConversione {
 		}
 		fdc.add(nuovaRiga);
 	}
+	
 	private void aggiungiColonna(Double id) {
 		fdc.get(0).add(id);
 		for(int i = 1; i < fdc.size(); i++) {
@@ -67,7 +72,8 @@ return max;
 	private double calcolaMAX(ArrayList<Double> ramiUscenti) {
 		Double max = MAX_FDC;
 		for(Double d : ramiUscenti) {
-			max = Math.min(max, MAX_FDC / d);
+			if( d != 0.0) //0.0 solo se diagonale oppure appena riempito con valori 0.0 filler
+				max = Math.min(max, MAX_FDC / d);
 		}
 		return max;		
 	}
@@ -83,42 +89,60 @@ return max;
 	private double calcolaMIN(ArrayList<Double> ramiUscenti) {
 		Double min = MIN_FDC;
 		for(Double d: ramiUscenti) {
-			min = Math.max(min, MIN_FDC / d);
+			if( d != 0.0)
+				min = Math.max(min, MIN_FDC / d);
 		}
 		return min;
 	}
 	
 	public void aggancia(Integer nuova) {
-		Double id = nuova.doubleValue();
+		Double id = nuova.doubleValue();	
+		System.out.println("Id vale    " + id);
 		aggiungiRiga(id);
 		aggiungiColonna(id);
-		aggiornaValori(nuova);
+		aggiornaValori();
 		
 	}
-	
-	private void aggiornaValori(Integer nuova) {
-		ArrayList<Double> ramiUscenti = fdc.get(nuova-1);
+
+	private void aggiornaValori() {
+		int cont = fdc.size() - 1;
+		System.out.println("cont vale   " + cont);
+		//GGIUNGO COUNTER numero = ++numero ogni volta che devo agganciare una Integer nuova
+		//hash map tra id Integer nuova e counter del numero che sto aggiungendo
+		
+		ArrayList<Double> ramiUscenti = fdc.get(cont);
 		
 		double max = calcolaMAX(ramiUscenti);
 		double min = calcolaMIN(ramiUscenti);
 		double k = InputDati.leggiDoubleConMINeMAX("Inserire valore fattore di conversione associato a 1 or whateva", min, max);
-		
 		//LAVORO SU RIGA
-		//aggancio alla categoria 1 ***********************************SISTEMA QUI
-		fdc.get(nuova).set(1, k);
-		fdc.get(1).set(nuova, 1 / k);
+		//aggancio la prima quindi posizione 0
+		fdc.get(cont).set(0, k);
+		fdc.get(0).set(cont, 1 / k);
 
 		//LAVORO SU COLONNA
-		for(int i = 1; i < nuova; i++) {
+		for(int i = 0; i < cont; i++) {
 			//fdc[nuova][i] = fdc[nuova][1]*fdc[1][i];
-			double valore = fdc.get(nuova).get(1) * fdc.get(1).get(i);
-			fdc.get(nuova).set(i, valore);
+			double valore = fdc.get(cont).get(0) * fdc.get(0).get(i);
+			fdc.get(cont).set(i, valore);
 			//fdc[i][nuova] = 1/fdc[nuova][i];
 			double invertito = 1 / valore;
-			fdc.get(i).set(nuova, invertito);
+			fdc.get(i).set(cont, invertito);
 		}
+		completaVuote();
 	}
 	
+	private void completaVuote() {
+		
+		for(int i = 1; i < fdc.size(); i++) {
+			for(int j = 1; j < fdc.size(); j++) {
+				if (fdc.get(i).get(j) == null)
+						fdc.get(i).set(j, 0.0);
+			}
+		}
+		
+	}
+
 	public void stampaFDC() {
 		if(fdc.equals(null))
 			System.out.println("Nessun fattore di conversione presente");
@@ -145,7 +169,12 @@ return max;
 	//HashMap<CategoriaFoglia, double>();
 	
 	public String toString() {
-		return String.format("STAMPA FAT CONVERSIONE > \n%s", fdc.toString());
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i < fdc.size(); i++) {
+			sb.append(fdc.get(i));
+			sb.append("\n");
+		}
+		return String.format("STAMPA FAT CONVERSIONE > \n%s", sb.toString());
 	}
 
 }

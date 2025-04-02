@@ -158,14 +158,11 @@ public class InputDati {
 		double valoreLetto = 0;
 		do {
 			valoreLetto = leggiDouble(messaggio);
-			if (valoreLetto >= minimo)
-				finito = true;
-			else
+			if (valoreLetto < minimo || valoreLetto > massimo) {
 				System.out.println(ERRORE_MINIMO + minimo);
-			if(valoreLetto <= massimo)
-				finito = true;
-			else
-				System.out.println(ERRORE_MASSIMO + massimo);
+				System.out.println( ERRORE_MASSIMO + massimo);
+			}
+			else finito = true;
 		} while (!finito);
 		
 		return valoreLetto;

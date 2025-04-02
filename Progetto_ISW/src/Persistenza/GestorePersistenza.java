@@ -205,6 +205,7 @@ public class GestorePersistenza {
 		}
 		return categorieFoglia;
 	}
+	
 	public static FatConversione caricaFatConversione(){
 		Type listType = new TypeToken<FatConversione>() {}.getType();
 		FatConversione fatConversione = carica(listType, FILE_FATT_CONVERSIONE);
