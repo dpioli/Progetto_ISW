@@ -1,9 +1,9 @@
 [
   {
     "catRadice": {
-      "nome": "prova",
+      "nome": "aprile",
       "campCaratt": {
-        "nomeCampo": "CC",
+        "nomeCampo": "sette",
         "valoriCampo": {
           "due": "",
           "uno": ""
@@ -11,14 +11,27 @@
       },
       "sottoCateg": [
         {
-          "id": 1,
-          "nome": "f1",
-          "sottoCateg": [],
-          "foglia": true
+          "nome": "intermedia",
+          "campCaratt": {
+            "nomeCampo": "unica",
+            "valoriCampo": {
+              "uno": ""
+            }
+          },
+          "sottoCateg": [
+            {
+              "id": 1,
+              "nome": "singolafoglia",
+              "sottoCateg": [],
+              "foglia": true
+            }
+          ],
+          "dominio": 1,
+          "foglia": false
         },
         {
           "id": 2,
-          "nome": "f2",
+          "nome": "dasola",
           "sottoCateg": [],
           "foglia": true
         }
@@ -33,9 +46,9 @@
   },
   {
     "catRadice": {
-      "nome": "prova",
+      "nome": "aprile",
       "campCaratt": {
-        "nomeCampo": "CC",
+        "nomeCampo": "sette",
         "valoriCampo": {
           "due": "",
           "uno": ""
@@ -43,14 +56,91 @@
       },
       "sottoCateg": [
         {
-          "id": 1,
-          "nome": "f1",
+          "nome": "intermedia",
+          "campCaratt": {
+            "nomeCampo": "unica",
+            "valoriCampo": {
+              "uno": ""
+            }
+          },
+          "sottoCateg": [
+            {
+              "id": 1,
+              "nome": "singolafoglia",
+              "sottoCateg": [],
+              "foglia": true
+            }
+          ],
+          "dominio": 1,
+          "foglia": false
+        },
+        {
+          "id": 2,
+          "nome": "dasola",
+          "sottoCateg": [],
+          "foglia": true
+        }
+      ],
+      "dominio": 2,
+      "foglia": false
+    },
+    "proprietario": {
+      "username": "ErjonaM",
+      "password": "ProgettoISW"
+    }
+  },
+  {
+    "catRadice": {
+      "nome": "versomaggio",
+      "campCaratt": {
+        "nomeCampo": "speriamo",
+        "valoriCampo": {
+          "altre": "",
+          "due": ""
+        }
+      },
+      "sottoCateg": [
+        {
+          "id": 3,
+          "nome": "foglia3",
           "sottoCateg": [],
           "foglia": true
         },
         {
-          "id": 2,
-          "nome": "f2",
+          "id": 4,
+          "nome": "foglia4speroneicontisbagliati",
+          "sottoCateg": [],
+          "foglia": true
+        }
+      ],
+      "dominio": 2,
+      "foglia": false
+    },
+    "proprietario": {
+      "username": "ErjonaM",
+      "password": "ProgettoISW"
+    }
+  },
+  {
+    "catRadice": {
+      "nome": "versomaggio",
+      "campCaratt": {
+        "nomeCampo": "speriamo",
+        "valoriCampo": {
+          "altre": "",
+          "due": ""
+        }
+      },
+      "sottoCateg": [
+        {
+          "id": 3,
+          "nome": "foglia3",
+          "sottoCateg": [],
+          "foglia": true
+        },
+        {
+          "id": 4,
+          "nome": "foglia4speroneicontisbagliati",
           "sottoCateg": [],
           "foglia": true
         }
