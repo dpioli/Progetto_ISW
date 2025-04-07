@@ -139,6 +139,7 @@ public class MenuConfiguratore extends Menu {
 		Comprensorio nuovoComprensorio = new Comprensorio(nomeComprensorio, comuni);
 		logica.addComprensorio(nuovoComprensorio);
 		System.out.println(MSG_SUCCESSO_COMPRENSORIO);
+		
 		GestorePersistenza.salvaComprensori(logica.getComprensori());
 
 	}
@@ -167,13 +168,15 @@ public class MenuConfiguratore extends Menu {
 			}
 		}
 		int dimensioneDominio = valoriCampo.size();
+		
 		Gerarchia nuovaGerarchia = addGerarchia(nomeGerarchia, nomeCampo, valoriCampo, dimensioneDominio);
 		System.out.println(MSG_INSERISCI_SOTTOCATEG);
 		addSottoCategorie(nuovaGerarchia.getCatRadice());
+		
 		logica.addGerarchia(nuovaGerarchia);
 		System.out.println(MSG_GERARCHIA_CREATA_CON_SUCCESSO);
-		GestorePersistenza.salvaGerarchie(logica.getGerarchie());
-
+		
+		salvaGerarchieEFoglie();
 	}
 
 
@@ -202,23 +205,21 @@ public class MenuConfiguratore extends Menu {
 	}
 
 	public void visualizzaFatConv() {
-		FatConversione fdc = logica.getFatConversione();
-		/*ArrayList<FatConversione> fatConvers = logica.getFatConversione();
-		if(fatConvers == null) {
-			System.out.println(NESSUN_FAT_CONVERSIONE);
-		}
-		for (FatConversione fc : fatConvers) {
-			System.out.println(fc.toString());
-		}*/
-		fdc.stampaFDC();
+		FatConversione fdc = logica.getFatConversione();	
+			fdc.stampaFDC();
 	}
 
 	public void salva() {
-		GestorePersistenza.salvaComprensori(logica.getComprensori());
-		GestorePersistenza.salvaGerarchie(logica.getGerarchie());
-		GestorePersistenza.salvaFatConversione(logica.getFatConversione());
 		GestorePersistenza.salvaConfiguratori(logica.getConfiguratori());
+		salvaGerarchieEFoglie();
+		GestorePersistenza.salvaComprensori(logica.getComprensori());
 		System.out.println(MSG_SALVATAGGIO);
+	}
+	
+	public void salvaGerarchieEFoglie() {
+		GestorePersistenza.salvaGerarchie(logica.getGerarchie());
+		GestorePersistenza.salvaCategorieFoglia(logica.getCategorieFoglia());
+		GestorePersistenza.salvaFatConversione(logica.getFatConversione());
 	}
 	
 	
@@ -282,6 +283,7 @@ public class MenuConfiguratore extends Menu {
 		int dimensioneDominio = valoriCampo.size();
 		CampoCaratteristico cC = new CampoCaratteristico(nomeCampo);
 		cC.aggiungiValori(valoriCampo);
+		
 		CategoriaNonFoglia catNnF1 = new CategoriaNonFoglia(nomeCatNonFl, cC, dimensioneDominio);
 		radice.getSottoCateg().add(catNnF1);
 		addSottoCategorie(catNnF1);
@@ -292,6 +294,7 @@ public class MenuConfiguratore extends Menu {
 		
 		System.out.println(MSG_CATEGORIA_FOGLIA);
 		String nomeFoglia = InputDati.leggiStringaNonVuota(MSG_NOME_CATEGORIA);
+		
 		for(Categoria c: radice.getSottoCateg()) {
 			if(c.eUguale(nomeFoglia)) {
 				System.out.println(MSG_NOME_CATEGORIA_NON_VALIDO);
@@ -301,15 +304,15 @@ public class MenuConfiguratore extends Menu {
 		int ultimoID = logica.recuperaUltimoID();
 		
 		CategoriaFoglia nuovaCategFoglia = new CategoriaFoglia(nomeFoglia, ultimoID);
-		
 		radice.getSottoCateg().add(nuovaCategFoglia);
+		
 		logica.addCategoriaFoglia(nuovaCategFoglia);
-		GestorePersistenza.salvaCategorieFoglia(logica.getCategorieFoglia());
 		
 		aggiungiFDC(nuovaCategFoglia.getId());
 		
 	}
 	private void aggiungiFDC(Integer nuova) {
 		logica.aggiungiFDC(nuova);
+		GestorePersistenza.salvaFatConversione(logica.getFatConversione());
 	}
 }

@@ -10,11 +10,16 @@ import Persistenza.LogicaPersistenza;
 public class CategoriaFoglia extends Categoria{
 	
 	private int id;
-
+	
+	/**
+	 * Costruttore oggetto foglia, assegna un numero identificativo passato come parametro
+	 * per mantenere consistenza nella persistenza.
+	 * @param nome
+	 * @param ultimoID, identificativo foglia precedete (salvata nel file .json)
+	 */
 	public CategoriaFoglia(String nome, Integer ultimoID) {
 		super(nome, null, null, null, true);
 		this.id = ++ultimoID;
-		System.out.println("id della foglia " + id);
 	}
 
 

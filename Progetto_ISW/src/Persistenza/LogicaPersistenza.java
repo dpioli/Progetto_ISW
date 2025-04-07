@@ -87,7 +87,7 @@ public class LogicaPersistenza {
 	
 	/**
 	 * Metodo per ottenere l'insieme dei fattori di conversione
-	 * @return ArrayList<FatConversione>
+	 * @return FatConversione
 	 */
 	public FatConversione getFatConversione() {
 		return fatConversione;
@@ -101,10 +101,18 @@ public class LogicaPersistenza {
 		this.fatConversione = fatConversione;
 	}
 	
+	/**
+	 * Metodo per ottenere l'insieme delle categorie foglia
+	 * @return categorieFoglia
+	 */
 	public ArrayList<CategoriaFoglia> getCategorieFoglia() {
 		return categorieFoglia;
 	}
 
+	/**
+	 * Metodo per modificare l'insieme delle categorie foglia
+	 * @param categorieFoglia
+	 */
 	public void setCategorieFoglia(ArrayList<CategoriaFoglia> categorieFoglia) {
 		this.categorieFoglia = categorieFoglia;
 	}
@@ -118,10 +126,11 @@ public class LogicaPersistenza {
 	 */
 	
 
-	/**
-	 * Metodo per aggiungere un configuratore all'insieme dei configuratori
-	 * @param configuratore
-	 */
+	/***
+	 * METODI PER L'AGGIUNTA DI NUOVI OGGETTI AI RISPETTIVI INSIEMI
+	 * @param oggetto da aggiungere
+	 ***/
+	
 	public void addConfiguratore(Configuratore configuratore) {
 		configuratori.add(configuratore);
 	}
@@ -144,6 +153,11 @@ public class LogicaPersistenza {
 		fatConversione.aggancia(nuova);	
 	}
 	
+	/**
+	 * Metodo che recupera l'identificativo dell'ultima foglia salvata,
+	 * permette di calcolare quello della successiva per mantenere la persistenza.
+	 * @return id ultima foglia salvata
+	 */
 	public int recuperaUltimoID() {
 		if(categorieFoglia.isEmpty())
 			return 0;

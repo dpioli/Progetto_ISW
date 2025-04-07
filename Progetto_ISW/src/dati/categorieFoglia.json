@@ -1,25 +1,25 @@
 [
   {
     "id": 1,
-    "nome": "singolafoglia",
+    "nome": "fogliadasola",
     "sottoCateg": [],
     "foglia": true
   },
   {
     "id": 2,
-    "nome": "dasola",
+    "nome": "isolata",
     "sottoCateg": [],
     "foglia": true
   },
   {
     "id": 3,
-    "nome": "foglia3",
+    "nome": "terza",
     "sottoCateg": [],
     "foglia": true
   },
   {
     "id": 4,
-    "nome": "foglia4speroneicontisbagliati",
+    "nome": "quarta",
     "sottoCateg": [],
     "foglia": true
   }

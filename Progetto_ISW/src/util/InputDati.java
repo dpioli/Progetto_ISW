@@ -153,6 +153,15 @@ public class InputDati {
 
 		return valoreLetto;
 	}
+	
+	/**
+	 * Metodo richiede all'utente un valore intero tenendo conto di condizioni limite di minimo e di massimo.
+	 * Continua a richiedere il valore finché esso non è valido.
+	 * @param messaggio visualizzato dall'utente
+	 * @param minimo
+	 * @param massimo
+	 * @return valore letto
+	 */
 	public static double leggiDoubleConMINeMAX(String messaggio, double minimo, double massimo) {
 		boolean finito = false;
 		double valoreLetto = 0;
