@@ -108,7 +108,84 @@ public class MenuConfiguratore extends Menu {
 		this.config = config;
 		this.logica = logica;
 	}
+	
 
+	/*
+	 * FUNZIONI DI VISUALIZZAZIONE
+	 */
+
+	/**
+	 * Metodo di visualizzazione dei comprensori geografici.
+	 */
+	public void visualizzaComprensori() {
+		ArrayList<Comprensorio> comprensori = logica.getComprensori();
+		if(comprensori == null) {
+			System.out.println(NESSUN_COMPRENSORIO);
+		} else {
+			for (Comprensorio c : comprensori) {
+				System.out.println(c.toString());
+			}
+		}	
+	}
+
+	/**
+	 * Metodo di visualizzazione delle gerarchie.
+	 */
+	public void visualizzaGerarchie() {
+		ArrayList<Gerarchia> gerarchie = logica.getGerarchie();
+		if(gerarchie == null) {
+			System.out.println(NESSUNA_GERARCHIA);
+		} else {
+			for (Gerarchia g : gerarchie) {
+				System.out.println(g.toString());
+			}
+		}
+	}
+
+	/**
+	 * Metodo di visualizzazione della matrice dei fattori di conversione.
+	 */
+	public void visualizzaFatConv() {
+		FatConversione fdc = logica.getFatConversione();	
+			fdc.stampaFDC();
+	}
+	
+	
+	/*
+	 * FUNZIONI SALVATAGGIO DATI
+	 */
+	
+
+	/**
+	 * Metodo di salvataggio dei file gson.
+	 */
+	public void salva() {
+		GestorePersistenza.salvaConfiguratori(logica.getConfiguratori());
+		salvaGerarchieEFoglie();
+		GestorePersistenza.salvaComprensori(logica.getComprensori());
+		System.out.println(MSG_SALVATAGGIO);
+	}
+	
+	/**
+	 * Metodo di salvataggio gerarchie, categorie foglia e matrice dei fattori di conversione.
+	 */
+	public void salvaGerarchieEFoglie() {
+		GestorePersistenza.salvaGerarchie(logica.getGerarchie());
+		GestorePersistenza.salvaCategorieFoglia(logica.getCategorieFoglia());
+		GestorePersistenza.salvaFatConversione(logica.getFatConversione());
+	}
+	
+	
+	/*
+	 * 			ELABORAZIONE DATI CREAZIONE GERARCHIA
+	 */
+
+	/**
+	 * Metodo di creazione Comprensorio Geografico:
+	 * -crea il nuovo oggetto (assicutandosi della sua unicità);
+	 * -lo aggiunge agli altri comprensori nella logica di slavataggio
+	 * -completa il salvataggio.
+	 */
 	public void creaComprensorio() {
 		System.out.println(MSG_CREAZIONE_COMPRENSORIO);
 		String nomeComprensorio = InputDati.leggiStringaNonVuota(MSG_NOME_COMPRENSORIO);
@@ -144,6 +221,12 @@ public class MenuConfiguratore extends Menu {
 
 	}
 
+	/**
+	 * Metodo di creazione Gerarchia:
+	 *  -crea il nuovo oggetto (assicutandosi della sua unicità);
+	 * -lo aggiunge alle altre gerarchie nella logica di slavataggio;
+	 * -completa il salvataggio.
+	 */
 	public void creaGerarchia() {
 		System.out.println(MSG_CREAZIONE_GERARCHIA);
 		String nomeGerarchia = InputDati.leggiStringaNonVuota(MSG_NOME_GERARCHIA);
@@ -178,55 +261,16 @@ public class MenuConfiguratore extends Menu {
 		
 		salvaGerarchieEFoglie();
 	}
-
-
-	public void visualizzaComprensori() {
-		ArrayList<Comprensorio> comprensori = logica.getComprensori();
-		if(comprensori == null) {
-			System.out.println(NESSUN_COMPRENSORIO);
-		} else {
-			for (Comprensorio c : comprensori) {
-				System.out.println(c.toString());
-			}
-		}
-			
-		
-	}
-
-	public void visualizzaGerarchie() {
-		ArrayList<Gerarchia> gerarchie = logica.getGerarchie();
-		if(gerarchie == null) {
-			System.out.println(NESSUNA_GERARCHIA);
-		} else {
-			for (Gerarchia g : gerarchie) {
-				System.out.println(g.toString());
-			}
-		}
-	}
-
-	public void visualizzaFatConv() {
-		FatConversione fdc = logica.getFatConversione();	
-			fdc.stampaFDC();
-	}
-
-	public void salva() {
-		GestorePersistenza.salvaConfiguratori(logica.getConfiguratori());
-		salvaGerarchieEFoglie();
-		GestorePersistenza.salvaComprensori(logica.getComprensori());
-		System.out.println(MSG_SALVATAGGIO);
-	}
 	
-	public void salvaGerarchieEFoglie() {
-		GestorePersistenza.salvaGerarchie(logica.getGerarchie());
-		GestorePersistenza.salvaCategorieFoglia(logica.getCategorieFoglia());
-		GestorePersistenza.salvaFatConversione(logica.getFatConversione());
-	}
-	
-	
-	/*
-	 * 			ELABORAZIONE DATI CREAZIONE GERARCHIA
+	/**
+	 * Metodo di aggiunta gerarchia.
+	 * Crea l'oggetto gerarchia e lo aggiunge alle gerarchie della logica.
+	 * @param nomeGerarchia
+	 * @param nomeCampo
+	 * @param valoriCampo
+	 * @param dimensioneDominio
+	 * @return nuova gerarchia
 	 */
-	
 	private Gerarchia addGerarchia(String nomeGerarchia, String nomeCampo, ArrayList<String> valoriCampo,
 			Integer dimensioneDominio) {
 		CampoCaratteristico campoCaratt = new CampoCaratteristico(nomeCampo);
@@ -237,6 +281,12 @@ public class MenuConfiguratore extends Menu {
 		return nuovaGerarchia;
 	}
 	
+	/**
+	 * Metodo di aggiunta sottocategoria. 
+	 * Richiama la funzione di creazione categoria per ogni valore del campo caratteristico
+	 * della categoria passata come parametro.
+	 * @param categoria a cui aggiungere sottocategorie
+	 */
 	private void addSottoCategorie(Categoria categoria) {
 		for(Entry<String, String> v: categoria.getValoriCampo().entrySet()) {
 			creaCategoria(categoria);
@@ -244,6 +294,10 @@ public class MenuConfiguratore extends Menu {
 		
 	}
 	
+	/**
+	 * Metodo di creazione categoria che rimanda a uno dei due casi tra foglia e non foglia.
+	 * @param radice = categoria di aggancio
+	 */
 	private void creaCategoria(Categoria radice) {
 		int scelta = InputDati.leggiIntero(MSG_CERAZIONE_NODI, 1, 2);
 		
@@ -259,6 +313,12 @@ public class MenuConfiguratore extends Menu {
 		}
 	}
 
+	/**
+	 * Metodo di creazione categoria non foglia.
+	 * Controlla l'unicità del nome.
+	 * Richiede l'inserimento del nome del campo caratteristico e dei sui valori.
+	 * @param radice = categoria di aggancio
+	 */
 	private void creaCategoriaNonFoglia(Categoria radice) {
 		System.out.println(MSG_CATEGORIA_NON_FOGLIA);
 		String nomeCatNonFl = InputDati.leggiStringaNonVuota(MSG_NOME_CATEGORIA);
@@ -290,6 +350,12 @@ public class MenuConfiguratore extends Menu {
 		
 	}
 
+	/**
+	 * Metodo che crea una categoria foglia controllando l'unicità del nome e recuperando l'ID
+	 * della foglia precedente per ricavare quello nuovo.
+	 * Chiama il metodo di aggiunta dell'FDC per il calcolo dei fattori rispetto a quelle preesistenti.
+	 * @param radice = categoria di aggancio
+	 */
 	private void creaCategoriaFoglia(Categoria radice) {
 		
 		System.out.println(MSG_CATEGORIA_FOGLIA);
@@ -311,8 +377,13 @@ public class MenuConfiguratore extends Menu {
 		aggiungiFDC(nuovaCategFoglia.getId());
 		
 	}
+	
+	/**
+	 * Metodo che aggiunge un fattore di conversione alla logica.
+	 * @param id della foglia nuova
+	 */
 	private void aggiungiFDC(Integer nuova) {
 		logica.aggiungiFDC(nuova);
-		GestorePersistenza.salvaFatConversione(logica.getFatConversione());
+	//	GestorePersistenza.salvaFatConversione(logica.getFatConversione());
 	}
 }
