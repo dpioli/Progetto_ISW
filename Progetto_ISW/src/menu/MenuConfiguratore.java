@@ -384,6 +384,5 @@ public class MenuConfiguratore extends Menu {
 	 */
 	private void aggiungiFDC(Integer nuova) {
 		logica.aggiungiFDC(nuova);
-	//	GestorePersistenza.salvaFatConversione(logica.getFatConversione());
 	}
 }

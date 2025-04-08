@@ -1,6 +1,7 @@
 package applicazione;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import util.InputDati;
 
@@ -182,11 +183,23 @@ public class FatConversione {
 	 */
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		for(int i = 0; i < fdc.size(); i++) {
-			sb.append(fdc.get(i));
-			sb.append("\n");
-		}
-		return String.format(STAMPA_FDC, sb.toString());
-	}
+		//STAMPO LA PRIMA RIGA CON GLI IDENTIFICATIVI
+		for (int i = 0; i < fdc.get(0).size(); i++) {
+	        sb.append(String.format("%-15s", i == 0 ? "IDENTIFICATIVI" : "ID" + i));
+	    }
+		sb.append("\n");
 
+	    //STAMPO IL RESTO DELLA MATRICE
+	    for (int i = 1; i < fdc.size(); i++) {	
+	        for (int j = 0; j < fdc.get(i).size(); j++) {
+
+	        	String value =  (j == 0 ? "ID" + i : String.format("%.2f", fdc.get(i).get(j)));
+	            sb.append(String.format("%-15s", value));
+	        }
+	        sb.append("\n");
+	    }
+
+	    return sb.toString();
+	}
+		
 }
