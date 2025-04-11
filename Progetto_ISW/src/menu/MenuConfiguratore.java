@@ -1,6 +1,7 @@
 package menu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map.Entry;
 
 import Persistenza.GestorePersistenza;
@@ -23,6 +24,7 @@ import util.Menu;
  *
  */
 public class MenuConfiguratore extends Menu {
+	
 	
 	private Configuratore config;
 	private LogicaPersistenza logica;
@@ -58,6 +60,7 @@ public class MenuConfiguratore extends Menu {
 	private static final String MSG_NOME_GERARCHIA_NON_VALIDO = "E' già presente una gerarchia con questo nome.";
 	private static final String MSG_NOME_CAMPOCARATT = "Inserisci il nome del campo caratteristico > ";
 	private static final String MSG_VALORE_CAMPOCARATT = "Inserisci il valore ('fine' per terminare) > ";
+	private static final String MSG_DESCRIZIONE_CAMPOCARATT = "Inserisci la descrizione per questo valore (premere invio altrimenti) > ";
 	private static final String MSG_INSERISCI_SOTTOCATEG = "Inserisci le sottocategorie della gerarchia appena creata:\n ";
 	private static final String MSG_GERARCHIA_CREATA_CON_SUCCESSO = "La gerarchia è stata creata con successo!";
 	
@@ -223,7 +226,7 @@ public class MenuConfiguratore extends Menu {
 
 	/**
 	 * Metodo di creazione Gerarchia:
-	 *  -crea il nuovo oggetto (assicutandosi della sua unicità);
+	 * -crea il nuovo oggetto (assicutandosi della sua unicità);
 	 * -lo aggiunge alle altre gerarchie nella logica di slavataggio;
 	 * -completa il salvataggio.
 	 */
@@ -239,15 +242,17 @@ public class MenuConfiguratore extends Menu {
 		}
 		
 		String nomeCampo = InputDati.leggiStringaNonVuota(MSG_NOME_CAMPOCARATT);
-		ArrayList<String> valoriCampo = new ArrayList<>();
+		//ArrayList<String> valoriCampo = new ArrayList<>();
+		HashMap<String, String> valoriCampo = new HashMap<>();
 		
 		boolean continua = true;
 		while(continua) {
 			String valore = InputDati.leggiStringaNonVuota(MSG_VALORE_CAMPOCARATT);
+			String desc = InputDati.leggiStringa(MSG_DESCRIZIONE_CAMPOCARATT);
 			if(valore.equalsIgnoreCase(MSG_TERMINAZIONE)) {
 				continua = false;
 			} else {
-				valoriCampo.add(valore);
+				valoriCampo.put(valore, desc);
 			}
 		}
 		int dimensioneDominio = valoriCampo.size();
@@ -271,13 +276,12 @@ public class MenuConfiguratore extends Menu {
 	 * @param dimensioneDominio
 	 * @return nuova gerarchia
 	 */
-	private Gerarchia addGerarchia(String nomeGerarchia, String nomeCampo, ArrayList<String> valoriCampo,
+	private Gerarchia addGerarchia(String nomeGerarchia, String nomeCampo, HashMap<String, String> valoriCampo,
 			Integer dimensioneDominio) {
-		CampoCaratteristico campoCaratt = new CampoCaratteristico(nomeCampo);
-		campoCaratt.aggiungiValori(valoriCampo);
+		CampoCaratteristico campoCaratt = new CampoCaratteristico(nomeCampo, valoriCampo);
+		//campoCaratt.aggiungiValori(valoriCampo);
 		CategoriaNonFoglia radice = new CategoriaNonFoglia(nomeGerarchia, campoCaratt, dimensioneDominio);
 		Gerarchia nuovaGerarchia = new Gerarchia(radice, config);
-		logica.addGerarchia(nuovaGerarchia);
 		return nuovaGerarchia;
 	}
 	
@@ -329,20 +333,21 @@ public class MenuConfiguratore extends Menu {
 			}
 		}
 		String nomeCampo = InputDati.leggiStringaNonVuota(MSG_NOME_CAMPOCARATT);
-		ArrayList<String> valoriCampo = new ArrayList<>();
+		HashMap<String, String> valoriCampo = new HashMap<>();
 		
 		boolean continua = true;
 		while(continua) {
 			String valore = InputDati.leggiStringaNonVuota(MSG_VALORE_CAMPOCARATT);
+			String desc = InputDati.leggiStringa(MSG_DESCRIZIONE_CAMPOCARATT);
 			if(valore.equalsIgnoreCase(MSG_TERMINAZIONE)) {
 				continua = false;
 			} else {
-				valoriCampo.add(valore);
+				valoriCampo.put(valore, desc);
 			}
 		}
 		int dimensioneDominio = valoriCampo.size();
-		CampoCaratteristico cC = new CampoCaratteristico(nomeCampo);
-		cC.aggiungiValori(valoriCampo);
+		CampoCaratteristico cC = new CampoCaratteristico(nomeCampo, valoriCampo);
+		//cC.aggiungiValori(valoriCampo);
 		
 		CategoriaNonFoglia catNnF1 = new CategoriaNonFoglia(nomeCatNonFl, cC, dimensioneDominio);
 		radice.getSottoCateg().add(catNnF1);

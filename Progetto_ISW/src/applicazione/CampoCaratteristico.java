@@ -22,6 +22,11 @@ public class CampoCaratteristico {
 		this.valoriCampo = new HashMap<>();
 	}
 	
+	public CampoCaratteristico (String nomeCampo, HashMap<String, String> valoriCampo) {
+		this.nomeCampo = nomeCampo;
+		this.valoriCampo = valoriCampo;
+	}
+	
 	public String getNomeCampo() {
 		return nomeCampo;
 	}
