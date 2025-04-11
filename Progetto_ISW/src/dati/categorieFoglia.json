@@ -22,5 +22,17 @@
     "nome": "quarta",
     "sottoCateg": [],
     "foglia": true
+  },
+  {
+    "id": 5,
+    "nome": "foglia uno",
+    "sottoCateg": [],
+    "foglia": true
+  },
+  {
+    "id": 6,
+    "nome": "foglia due",
+    "sottoCateg": [],
+    "foglia": true
   }
 ]

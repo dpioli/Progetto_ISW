@@ -20,7 +20,6 @@
           },
           "sottoCateg": [
             {
-              "id": 1,
               "nome": "fogliadasola",
               "sottoCateg": [],
               "foglia": true
@@ -30,7 +29,6 @@
           "foglia": false
         },
         {
-          "id": 2,
           "nome": "isolata",
           "sottoCateg": [],
           "foglia": true
@@ -65,7 +63,6 @@
           },
           "sottoCateg": [
             {
-              "id": 1,
               "nome": "fogliadasola",
               "sottoCateg": [],
               "foglia": true
@@ -75,7 +72,6 @@
           "foglia": false
         },
         {
-          "id": 2,
           "nome": "isolata",
           "sottoCateg": [],
           "foglia": true
@@ -101,13 +97,11 @@
       },
       "sottoCateg": [
         {
-          "id": 3,
           "nome": "terza",
           "sottoCateg": [],
           "foglia": true
         },
         {
-          "id": 4,
           "nome": "quarta",
           "sottoCateg": [],
           "foglia": true
@@ -133,13 +127,11 @@
       },
       "sottoCateg": [
         {
-          "id": 3,
           "nome": "terza",
           "sottoCateg": [],
           "foglia": true
         },
         {
-          "id": 4,
           "nome": "quarta",
           "sottoCateg": [],
           "foglia": true
@@ -150,6 +142,38 @@
     },
     "proprietario": {
       "username": "ErjonaM",
+      "password": "ProgettoISW"
+    }
+  },
+  {
+    "catRadice": {
+      "nome": "Prova",
+      "campCaratt": {
+        "nomeCampo": "sezione uno",
+        "valoriCampo": {
+          "due": "",
+          "uno": ""
+        }
+      },
+      "sottoCateg": [
+        {
+          "id": 5,
+          "nome": "foglia uno",
+          "sottoCateg": [],
+          "foglia": true
+        },
+        {
+          "id": 6,
+          "nome": "foglia due",
+          "sottoCateg": [],
+          "foglia": true
+        }
+      ],
+      "dominio": 2,
+      "foglia": false
+    },
+    "proprietario": {
+      "username": "DiegoP",
       "password": "ProgettoISW"
     }
   }
