@@ -248,10 +248,10 @@ public class MenuConfiguratore extends Menu {
 		boolean continua = true;
 		while(continua) {
 			String valore = InputDati.leggiStringaNonVuota(MSG_VALORE_CAMPOCARATT);
-			String desc = InputDati.leggiStringa(MSG_DESCRIZIONE_CAMPOCARATT);
 			if(valore.equalsIgnoreCase(MSG_TERMINAZIONE)) {
 				continua = false;
 			} else {
+				String desc = InputDati.leggiStringa(MSG_DESCRIZIONE_CAMPOCARATT);
 				valoriCampo.put(valore, desc);
 			}
 		}
@@ -338,10 +338,10 @@ public class MenuConfiguratore extends Menu {
 		boolean continua = true;
 		while(continua) {
 			String valore = InputDati.leggiStringaNonVuota(MSG_VALORE_CAMPOCARATT);
-			String desc = InputDati.leggiStringa(MSG_DESCRIZIONE_CAMPOCARATT);
 			if(valore.equalsIgnoreCase(MSG_TERMINAZIONE)) {
 				continua = false;
 			} else {
+				String desc = InputDati.leggiStringa(MSG_DESCRIZIONE_CAMPOCARATT);
 				valoriCampo.put(valore, desc);
 			}
 		}
