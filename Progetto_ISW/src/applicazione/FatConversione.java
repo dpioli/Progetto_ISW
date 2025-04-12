@@ -9,7 +9,7 @@ public class FatConversione {
 	
 	//MESSAGGI PER LA RICHIESTA
 	private static final String INTERVALLO_DA_CONSIDERARE = "Considera l'intervallo che va da MIN = %f a MAX = %f (compresi)";
-	private static final String RICHIESTA_FDC = "\nInserire valore fattore di conversione della nuova foglia associato alla prima.";
+	private static final String RICHIESTA_FDC = "\nInserire valore fattore di conversione della nuova foglia associato alla prima foglia F1.";
 	//MESSAGGI PER LA VISUALIZZAZIONE
 	private static final String NESSUN_FDC = "Nessun fattore di conversione presente";
 	private static final String STAMPA_FDC = "STAMPA FAT CONVERSIONE > \n%s";
@@ -185,7 +185,7 @@ public class FatConversione {
 		StringBuffer sb = new StringBuffer();
 		//STAMPO LA PRIMA RIGA CON GLI IDENTIFICATIVI
 		for (int i = 0; i < fdc.get(0).size(); i++) {
-	        sb.append(String.format("%-15s", i == 0 ? "IDENTIFICATIVI" : "ID" + i));
+	        sb.append(String.format("%-15s", i == 0 ? "IDENTIFICATIVI" : "F" + i));
 	    }
 		sb.append("\n");
 
@@ -193,7 +193,7 @@ public class FatConversione {
 	    for (int i = 1; i < fdc.size(); i++) {	
 	        for (int j = 0; j < fdc.get(i).size(); j++) {
 
-	        	String value =  (j == 0 ? "ID" + i : String.format("%.2f", fdc.get(i).get(j)));
+	        	String value =  (j == 0 ? "F" + i : String.format("%.2f", fdc.get(i).get(j)));
 	            sb.append(String.format("%-15s", value));
 	        }
 	        sb.append("\n");

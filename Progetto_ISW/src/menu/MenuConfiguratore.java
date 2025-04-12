@@ -150,7 +150,21 @@ public class MenuConfiguratore extends Menu {
 	 */
 	public void visualizzaFatConv() {
 		FatConversione fdc = logica.getFatConversione();	
-			fdc.stampaFDC();
+		fdc.stampaFDC();
+		visualizzaLegenda();
+	}
+	
+	/**
+	 * Metodo di visualizzazione legenda relativa alle categorie foglia della matrice dei fattori di conversione.
+	 */
+	public void visualizzaLegenda() {
+		ArrayList<CategoriaFoglia> categorieFoglia = logica.getCategorieFoglia();
+		StringBuffer sb = new StringBuffer();
+		sb.append("----- LEGENDA -----\n");
+		for(CategoriaFoglia f : categorieFoglia) {
+			sb.append(String.format("F%d : %s\n", f.getId(), f.getNome()));
+		}
+		System.out.println(sb.toString());
 	}
 	
 	
