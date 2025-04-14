@@ -140,7 +140,8 @@ public class MenuConfiguratore extends Menu {
 			System.out.println(NESSUNA_GERARCHIA);
 		} else {
 			for (Gerarchia g : gerarchie) {
-				System.out.println(g.toString());
+				String tree = Gerarchia.generaAlberoStringa(g);
+				System.out.println("\n"+tree);
 			}
 		}
 	}
@@ -167,7 +168,6 @@ public class MenuConfiguratore extends Menu {
 		System.out.println(sb.toString());
 	}
 	
-	
 	/*
 	 * FUNZIONI SALVATAGGIO DATI
 	 */
@@ -191,7 +191,6 @@ public class MenuConfiguratore extends Menu {
 		GestorePersistenza.salvaCategorieFoglia(logica.getCategorieFoglia());
 		GestorePersistenza.salvaFatConversione(logica.getFatConversione());
 	}
-	
 	
 	/*
 	 * 			ELABORAZIONE DATI CREAZIONE GERARCHIA

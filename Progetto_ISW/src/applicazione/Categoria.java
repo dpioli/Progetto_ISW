@@ -107,40 +107,12 @@ public class Categoria {
 		return false;
 	}
 	
+	/**
+	 * Metodo per ritornare i valori del campo caratteristico
+	 * @return coppia di valori valore=descrizione presenti nel campo caratteristico della gerarchia
+	 */
 	public HashMap<String, String> getValoriCampo(){
 		return campCaratt.getValori();
-	}
-	
-	public String stampaCateg() {
-		StringBuffer sb = new StringBuffer();
-		for(Categoria c: this.sottoCateg) {
-			if(!c.isFoglia()) {
-				sb.append(c.toStringNonFoglia());
-			} else {
-				sb.append(c.toStringFoglia());
-			}
-		}
-		return sb.toString();
-	}
-	
-	/**
-	 * Metodi che permette la visualizzazione di una categoria
-	 * @param b 
-	 * @param string 
-	 * @param categoria 
-	 * @return descrizione categoria
-	 */
-	
-	public String toStringNonFoglia() {
-		return String.format("Categoria: %s -> %s\n"
-							+ "\t\tSottocategorie > \n\t\t%s", 
-							this.getNome(),
-							this.getValoriCampo().toString(),
-							this.stampaCateg());
-	}
-	
-	public String toStringFoglia() {
-		return String.format("\t\tCategoria: %s\n", this.getNome());
 	}
 	
 }

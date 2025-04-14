@@ -1,6 +1,7 @@
 package applicazione;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import utenti.Configuratore;
 
@@ -35,86 +36,43 @@ public class Gerarchia {
 	/**
 	 * Metodo per verificare se una gerarchia ha lo stesso nome di un'altra
 	 * @param nomeGerarchia
-	 * @return
+	 * @return true se è già presente una gerarchia con quel nome
 	 */
 	public boolean eNomeUguale(String nomeGerarchia) {
 		return catRadice.eUguale(nomeGerarchia);
 	}
 	
-	public String toString() {
-		return String.format("\nGerarchia: %s -> %s\n"
-				+ "Sottocategorie > \n\t\t%s"
-				+ "\n", 
-					getCatRadice().getNome(), 
-					catRadice.getValoriCampo().toString(),
-					catRadice.stampaCateg());
-	}
+	/**
+	 * Metodo per ottenere la stringa di visualizzazione della gerarchia
+	 * @param gerarchia
+	 * @return stringa dell'albero generato
+	 */
+	public static String generaAlberoStringa(Gerarchia gerarchia) {
+        StringBuilder builder = new StringBuilder();
+        costruisciStringa(gerarchia.getCatRadice(), "", true, builder);
+        return builder.toString();
+    }
+	
+	/**
+	 * Metodo per generare il grafo della gerarchia 
+	 * @param categoria
+	 * @param prefisso
+	 * @param èUltimo
+	 * @param builder
+	 */
+    private static void costruisciStringa(Categoria categoria, String prefisso, boolean èUltimo, StringBuilder builder) {
+        builder.append(prefisso);
+        if (!prefisso.isEmpty()) {
+            builder.append(èUltimo ? "└── " : "├── ");
+        }
+        builder.append(categoria.getNome()).append("\n");
+
+        List<Categoria> figli = categoria.getSottoCateg();
+        for (int i = 0; i < figli.size(); i++) {
+            boolean ultimo = (i == figli.size() - 1);
+            String nuovoPrefisso = prefisso + (prefisso.isEmpty() ? " " : (èUltimo ? "    " : "│   "));
+            costruisciStringa(figli.get(i), nuovoPrefisso, ultimo, builder);
+        }
+    }
 	
 }
-/*
- *   {
-    "catRadice": {
-      "nome": "Sistemi Operativi ed Impianti Informatici",
-      "campCaratt": {
-        "nomeCampo": "campo",
-        "valoriCampo": {
-          "Sistemi Operativi": "",
-          "Impianti Informatici": ""
-        }
-      },
-      "sottoCateg": [
-        {
-          "nome": "Lezioni SO",
-          "campCaratt": {
-            "nomeCampo": "campo",
-            "valoriCampo": {
-              "Esercizi SO": "",
-              "Teoria SO": ""
-            }
-          },
-          "sottoCateg": [
-            {
-              "nome": "Lezioni Teoria SO",
-              "sottoCateg": [],
-              "foglia": false
-            },
-            {
-              "nome": "Lezioni Esercizi SO",
-              "sottoCateg": [],
-              "foglia": false
-            }
-          ],
-          "foglia": false
-        },
-        {
-          "nome": "Lezioni ImpInf",
-          "campCaratt": {
-            "nomeCampo": "campo",
-            "valoriCampo": {
-              "Teoria ImpInf": "",
-              "Esercizi ImpInf": ""
-            }
-          },
-          "sottoCateg": [
-            {
-              "nome": "Lezioni Teoria ImpInf",
-              "sottoCateg": [],
-              "foglia": false
-            },
-            {
-              "nome": "Lezioni Esercizi ImpInf",
-              "sottoCateg": [],
-              "foglia": false
-            }
-          ],
-          "foglia": false
-        }
-      ],
-      "foglia": false
-    },
-    "proprietario": {
-      "username": "DiegoP",
-      "password": "ProgettoISW"
-    }
-  }
- * */
