@@ -81,7 +81,7 @@ public class Categoria {
 		this.dominio = dominio;
 	}
 	
-	public boolean eFoglia() {
+	public boolean isFoglia() {
 		return this.foglia;
 	}
 	
@@ -114,21 +114,33 @@ public class Categoria {
 	public String stampaCateg() {
 		StringBuffer sb = new StringBuffer();
 		for(Categoria c: this.sottoCateg) {
-			sb.append(c.toString());
+			if(!c.isFoglia()) {
+				sb.append(c.toStringNonFoglia());
+			} else {
+				sb.append(c.toStringFoglia());
+			}
 		}
 		return sb.toString();
 	}
 	
 	/**
-	 * Metodo che permette la visualizzazione di una categoria
-	 * (DA AGGIUSTARE)
+	 * Metodi che permette la visualizzazione di una categoria
+	 * @param b 
+	 * @param string 
+	 * @param categoria 
 	 * @return descrizione categoria
 	 */
-	public String toString() {
-		return String.format("Categoria: %s\n"
-							+ "\t\tSottocategorie > \n\t\t\t%s", 
+	
+	public String toStringNonFoglia() {
+		return String.format("Categoria: %s -> %s\n"
+							+ "\t\tSottocategorie > \n\t\t%s", 
 							this.getNome(),
+							this.getValoriCampo().toString(),
 							this.stampaCateg());
 	}
-
+	
+	public String toStringFoglia() {
+		return String.format("\t\tCategoria: %s\n", this.getNome());
+	}
+	
 }

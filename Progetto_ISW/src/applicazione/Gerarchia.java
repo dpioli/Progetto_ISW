@@ -1,5 +1,7 @@
 package applicazione;
 
+import java.util.ArrayList;
+
 import utenti.Configuratore;
 
 /**
@@ -40,13 +42,14 @@ public class Gerarchia {
 	}
 	
 	public String toString() {
-		return String.format("Gerarchia: %s\n"
-				+ "Campo Caratteristico: %s"
-				+ "\n\t Sottocategorie > \n\t\t%s", 
+		return String.format("\nGerarchia: %s -> %s\n"
+				+ "Sottocategorie > \n\t\t%s"
+				+ "\n", 
 					getCatRadice().getNome(), 
-					catRadice.getValoriCampo().keySet(),
+					catRadice.getValoriCampo().toString(),
 					catRadice.stampaCateg());
 	}
+	
 }
 /*
  *   {
