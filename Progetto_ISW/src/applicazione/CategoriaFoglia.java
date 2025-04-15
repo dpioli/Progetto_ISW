@@ -1,7 +1,5 @@
 package applicazione;
 
-import Persistenza.LogicaPersistenza;
-
 /**
  * Classe per andare a identificare una classe foglia di una gerarchia
  * @author diego
