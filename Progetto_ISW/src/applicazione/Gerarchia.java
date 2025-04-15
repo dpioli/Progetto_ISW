@@ -66,7 +66,7 @@ public class Gerarchia {
             builder.append(èUltimo ? "└── " : "├── ");
         }
         builder.append(categoria.getNome()).append("\n");
-
+        
         List<Categoria> figli = categoria.getSottoCateg();
         for (int i = 0; i < figli.size(); i++) {
             boolean ultimo = (i == figli.size() - 1);
