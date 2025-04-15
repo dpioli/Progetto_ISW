@@ -2,7 +2,7 @@ package utenti;
 
 /**
  * Classe per identificare le proprieta' di un configuratore
- * @author diego
+ * @author Erjona Maxhaku 735766
  *
  */
 public class Configuratore {

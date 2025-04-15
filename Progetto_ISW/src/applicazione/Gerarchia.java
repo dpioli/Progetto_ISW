@@ -1,13 +1,12 @@
 package applicazione;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import utenti.Configuratore;
 
 /**
  * Classe per identificare le proprieta' di una gerarchia
- * @author diego
+ * @author Diego Pioli 736160
  *
  */
 public class Gerarchia {
@@ -49,7 +48,7 @@ public class Gerarchia {
 	 */
 	public static String generaAlberoStringa(Gerarchia gerarchia) {
         StringBuilder builder = new StringBuilder();
-        costruisciStringa(gerarchia.getCatRadice(), "", true, builder);
+        costruisciStringa(gerarchia.getCatRadice(), "", false, builder);
         return builder.toString();
     }
 	
@@ -65,7 +64,11 @@ public class Gerarchia {
         if (!prefisso.isEmpty()) {
             builder.append(èUltimo ? "└── " : "├── ");
         }
-        builder.append(categoria.getNome()).append("\n");
+        if(!(categoria.isFoglia())) {
+        	builder.append(categoria.getNome()).append(categoria.getValoriCampo().toString()).append("\n");
+        } else {
+        	builder.append(categoria.getNome()).append("\n");
+        }
         
         List<Categoria> figli = categoria.getSottoCateg();
         for (int i = 0; i < figli.size(); i++) {

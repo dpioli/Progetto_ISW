@@ -20,7 +20,7 @@ import util.Menu;
 /**
  * Classe per definite il menu delle funzionalità del configuratore
  * 
- * @author diego
+ * @author Erjona Maxhaku 735766
  *
  */
 public class MenuConfiguratore extends Menu {
@@ -80,11 +80,6 @@ public class MenuConfiguratore extends Menu {
 	 * VISUALIZZA GERARCHIE
 	 */
 	private static final String NESSUNA_GERARCHIA = "Non è ancora presente nessuna gerarchia";
-	
-	/**
-	 * VISUALIZZA FATTORI DI CONVERSIONE
-	 */
-	private static final String NESSUN_FAT_CONVERSIONE = "Non è ancora presente nessun fattore di conversione";
 	
 	/**
 	 * SALVATAGGIO DATI

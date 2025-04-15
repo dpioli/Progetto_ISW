@@ -4,6 +4,12 @@ import Persistenza.LogicaPersistenza;
 import utenti.Configuratore;
 import util.Menu;
 
+/**
+ * Classe per la visualizzazione della schermata principale del programma
+ * @author Diego Pioli 736160
+ *
+ */
+
 public class MenuPrincipale{
 	
 	private LogicaPersistenza logica;

@@ -8,7 +8,7 @@ import util.InputDati;
 
 /**
  * Classe dedita ad autenticare gli utenti prima di poter agire all'interno del programma
- * @author diego
+ * @author Diego Pioli 736160
  *
  */
 public class Autenticazione {

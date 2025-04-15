@@ -4,7 +4,7 @@ package util;
  * Questa classe rappresenta un menu testuale generico a piu' voci
  * Si suppone che la voce per uscire sia sempre associata alla scelta 0 
  * e sia presentata in fondo al menu
- * @author diego
+ * @author Diego Pioli 736160
  *
  */
 public class Menu {

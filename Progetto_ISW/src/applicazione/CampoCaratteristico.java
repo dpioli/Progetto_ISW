@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  * Classe per descrivere il campo caratteristico di una categoria non foglia
- * @author diego
+ * @author Erjona Maxhaku 735766
  *
  */
 public class CampoCaratteristico {

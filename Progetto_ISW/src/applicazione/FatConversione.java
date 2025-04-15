@@ -1,18 +1,24 @@
 package applicazione;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import util.InputDati;
+
+
+/**
+ * Classe per l'impostazione della matrice e la gestione dei fattori di conversione
+ * @author Erjona Maxhaku 735766
+ *
+ */
 
 public class FatConversione {
 	
 	//MESSAGGI PER LA RICHIESTA
 	private static final String INTERVALLO_DA_CONSIDERARE = "Considera l'intervallo che va da MIN = %f a MAX = %f (compresi)";
-	private static final String RICHIESTA_FDC = "\nInserire valore fattore di conversione della nuova foglia associato alla prima foglia F1.";
+	private static final String RICHIESTA_FDC = "\nInserire valore fattore di conversione della nuova foglia associato alla prima foglia F1 > ";
 	//MESSAGGI PER LA VISUALIZZAZIONE
 	private static final String NESSUN_FDC = "Nessun fattore di conversione presente";
-	private static final String STAMPA_FDC = "STAMPA FAT CONVERSIONE > \n%s";
+	//private static final String STAMPA_FDC = "STAMPA FAT CONVERSIONE > \n%s";
 	//VALORI DI MASSIMO E MINIMO INDICATI DAL TEMA
 	private static double MAX_FDC = 2;
 	private static double MIN_FDC = 0.5;

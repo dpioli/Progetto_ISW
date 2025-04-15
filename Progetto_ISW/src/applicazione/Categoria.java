@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  * Classe per andare a identificare le prorpieta' di una categoria
- * @author diego
+ * @author Diego Pioli 736160
  *
  */
 public class Categoria {

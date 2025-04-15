@@ -17,7 +17,7 @@ import utenti.Configuratore;
 /**
  * Classe per la gestione della persistenza dei dati
  * 
- * @author Diego Pioli 736160
+ * @author Erjona Maxhaku 735766
  */
 public class GestorePersistenza {
 	
