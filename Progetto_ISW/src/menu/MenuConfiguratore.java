@@ -117,7 +117,7 @@ public class MenuConfiguratore extends Menu {
 	 */
 	public void visualizzaComprensori() {
 		ArrayList<Comprensorio> comprensori = logica.getComprensori();
-		if(comprensori == null) {
+		if(comprensori.isEmpty()) {
 			System.out.println(NESSUN_COMPRENSORIO);
 		} else {
 			for (Comprensorio c : comprensori) {
@@ -131,7 +131,7 @@ public class MenuConfiguratore extends Menu {
 	 */
 	public void visualizzaGerarchie() {
 		ArrayList<Gerarchia> gerarchie = logica.getGerarchie();
-		if(gerarchie == null) {
+		if(gerarchie.isEmpty()) {
 			System.out.println(NESSUNA_GERARCHIA);
 		} else {
 			for (Gerarchia g : gerarchie) {

@@ -1,14 +1,1 @@
-[
-  {
-    "id": 1,
-    "nome": "fogliadasola",
-    "sottoCateg": [],
-    "foglia": true
-  },
-  {
-    "id": 2,
-    "nome": "isolata",
-    "sottoCateg": [],
-    "foglia": true
-  }
-]
+[]
