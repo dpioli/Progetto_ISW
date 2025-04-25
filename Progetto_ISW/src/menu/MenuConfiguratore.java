@@ -145,7 +145,7 @@ public class MenuConfiguratore extends Menu {
 	 * Metodo di visualizzazione della matrice dei fattori di conversione.
 	 */
 	public void visualizzaFatConv() {
-		FatConversione fdc = logica.getFatConversione();	
+		FatConversione fdc = logica.getFatConversione();
 		fdc.stampaFDC();
 		visualizzaLegenda();
 	}

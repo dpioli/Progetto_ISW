@@ -21,11 +21,12 @@ import utenti.Configuratore;
  */
 public class GestorePersistenza {
 	
-	private static final String FILE_CONFIGURATORI = "../Progetto_ISW/src/dati/configuratori.json";
-	private static final String FILE_GERARCHIE = "../Progetto_ISW/src/dati/gerarchie.json";
-	private static final String FILE_COMPRENSORI = "../Progetto_ISW/src/dati/comprensori.json";
-	private static final String FILE_FATT_CONVERSIONE = "../Progetto_ISW/src/dati/fattConversione.json";
-	private static final String FILE_CATEGORIEFOGLIA = "../Progetto_ISW/src/dati/categorieFoglia.json";
+	private static final String FILE_CONFIGURATORI = "dati/configuratori.json";
+	private static final String FILE_GERARCHIE = "dati/gerarchie.json";
+	private static final String FILE_COMPRENSORI = "dati/comprensori.json";
+	private static final String FILE_FATT_CONVERSIONE = "dati/fattConversione.json";
+	private static final String FILE_CATEGORIEFOGLIA = "dati/categorieFoglia.json";
+	
 	private static Gson gson;
 	
 	/**
@@ -65,12 +66,7 @@ public class GestorePersistenza {
 	    	return null;
 	    }
 	    try (FileReader rd = new FileReader(fpath)){
-	    	//System.out.println("Contenuto del file JSON:");
 	        oggetto = gson.fromJson(rd, typeOfT);
-	        /*if(oggetto == null) {
-	        	System.out.println("gson.fromJson() returned null.");
-	        }
-	        */
 	    } catch (IOException e) {
 	        System.err.println("Errore durante il caricamento: " + e.getMessage());
 	    }
@@ -188,15 +184,20 @@ public class GestorePersistenza {
 	 * Metodo per caricare i fattori di conversione
 	 * @return insieme dei fattori di conversione
 	 */
-	/*public static ArrayList<FatConversione> caricaFatConversione(){
-	    Type listType = new TypeToken<ArrayList<FatConversione>>() {}.getType();
-	    ArrayList<FatConversione> fatConversione = carica(listType, FILE_FATT_CONVERSIONE);
-	    if(fatConversione == null) {
-	    	return new ArrayList<FatConversione>();
-	    }
-	    return fatConversione;
+	public static FatConversione caricaFatConversione(){
+		Type listType = new TypeToken<FatConversione>() {}.getType();
+		FatConversione fatConversione = carica(listType, FILE_FATT_CONVERSIONE);
+		if(fatConversione == null) {
+			//System.out.println("Non è stato trovato nessun dato trovato per i fattori di conversione.");
+			return new FatConversione();
+		}
+		return fatConversione;
 	}
-*/
+	
+	/**
+	 * Metodo per caricare le categorie foglia presenti
+	 * @return lista delle categorie foglia
+	 */
 	public static ArrayList<CategoriaFoglia> caricaCategorieFoglia() {
 		Type listType = new TypeToken<ArrayList<CategoriaFoglia>>() {}.getType();
 		ArrayList<CategoriaFoglia> categorieFoglia = carica(listType, FILE_CATEGORIEFOGLIA);
@@ -206,13 +207,7 @@ public class GestorePersistenza {
 		return categorieFoglia;
 	}
 	
-	public static FatConversione caricaFatConversione(){
-		Type listType = new TypeToken<FatConversione>() {}.getType();
-		FatConversione fatConversione = carica(listType, FILE_FATT_CONVERSIONE);
-		if(fatConversione == null) {
-			System.out.println("Non è stato trovato nessun dato trovato per i fattori di conversione.");
-			return new FatConversione();
-		}
-		return fatConversione;
-	}
+	
+	
+	
 }
