@@ -21,11 +21,11 @@ import utenti.Configuratore;
  */
 public class GestorePersistenza {
 	
-	private static final String FILE_CONFIGURATORI = "../Progetto_ISW/src/dati/configuratori.json";
-	private static final String FILE_GERARCHIE = "../Progetto_ISW/src/dati/gerarchie.json";
-	private static final String FILE_COMPRENSORI = "../Progetto_ISW/src/dati/comprensori.json";
-	private static final String FILE_FATT_CONVERSIONE = "../Progetto_ISW/src/dati/fattConversione.json";
-	private static final String FILE_CATEGORIEFOGLIA = "../Progetto_ISW/src/dati/categorieFoglia.json";
+	private static final String FILE_CONFIGURATORI = "../Progetto_ISW_V1/src/dati/configuratori.json";
+	private static final String FILE_GERARCHIE = "../Progetto_ISW_V1/src/dati/gerarchie.json";
+	private static final String FILE_COMPRENSORI = "../Progetto_ISW_V1/src/dati/comprensori.json";
+	private static final String FILE_FATT_CONVERSIONE = "../Progetto_ISW_V1/src/dati/fattConversione.json";
+	private static final String FILE_CATEGORIEFOGLIA = "../Progetto_ISW_V1/src/dati/categorieFoglia.json";
 	
 	/* PER la JAR
 	private static final String FILE_CONFIGURATORI = "dati/configuratori.json";
