@@ -74,12 +74,12 @@ public class MenuConfiguratore extends Menu {
 	/**
 	 * VISUALIZZA COMPRENSORI
 	 */
-	private static final String NESSUN_COMPRENSORIO = "Non è ancora presente nessun comprensorio";
+	private static final String NESSUN_COMPRENSORIO = "\nNon è ancora presente nessun comprensorio.\n";
 	
 	/**
 	 * VISUALIZZA GERARCHIE
 	 */
-	private static final String NESSUNA_GERARCHIA = "Non è ancora presente nessuna gerarchia";
+	private static final String NESSUNA_GERARCHIA = "\nNon è ancora presente nessuna gerarchia.\n";
 	
 	/**
 	 * SALVATAGGIO DATI
