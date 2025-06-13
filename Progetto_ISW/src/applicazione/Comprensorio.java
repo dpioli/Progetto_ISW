@@ -47,6 +47,7 @@ public class Comprensorio {
 		return nome.equalsIgnoreCase(cerca);
 	}
 	
+	@Override
 	public String toString() {
 		return String.format("Comprensorio: %s\nComuni: %s", this.nome, this.comuni);
 	}
