@@ -21,19 +21,12 @@ import utenti.Configuratore;
  */
 public class GestorePersistenza {
 	
-	private static final String FILE_CONFIGURATORI = "../Progetto_ISW/src/dati/configuratori.json";
-	private static final String FILE_GERARCHIE = "../Progetto_ISW/src/dati/gerarchie.json";
-	private static final String FILE_COMPRENSORI = "../Progetto_ISW/src/dati/comprensori.json";
-	private static final String FILE_FATT_CONVERSIONE = "../Progetto_ISW/src/dati/fattConversione.json";
-	private static final String FILE_CATEGORIEFOGLIA = "../Progetto_ISW/src/dati/categorieFoglia.json";
-	
-	/* PER la JAR
 	private static final String FILE_CONFIGURATORI = "dati/configuratori.json";
 	private static final String FILE_GERARCHIE = "dati/gerarchie.json";
 	private static final String FILE_COMPRENSORI = "dati/comprensori.json";
 	private static final String FILE_FATT_CONVERSIONE = "dati/fattConversione.json";
 	private static final String FILE_CATEGORIEFOGLIA = "dati/categorieFoglia.json";
-	*/
+	
 	
 	private static Gson gson;
 	
@@ -196,7 +189,6 @@ public class GestorePersistenza {
 		Type listType = new TypeToken<FatConversione>() {}.getType();
 		FatConversione fatConversione = carica(listType, FILE_FATT_CONVERSIONE);
 		if(fatConversione == null) {
-			//System.out.println("Non è stato trovato nessun dato trovato per i fattori di conversione.");
 			return new FatConversione();
 		}
 		return fatConversione;

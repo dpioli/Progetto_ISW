@@ -64,6 +64,7 @@ public class CampoCaratteristico {
 		}
 	}
 	
+	@Override
 	public String toString() {
 		return String.format("%s --> %s", this.getNomeCampo(), this.getValori().keySet());
 	}
