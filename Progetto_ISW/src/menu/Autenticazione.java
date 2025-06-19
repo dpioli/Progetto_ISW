@@ -35,6 +35,7 @@ public class Autenticazione {
 	private static final String MSG_RICHIESTA_AUTENTICAZIONE = "Inserire le credenziali di autenticazione: ";
 
 	private static final String MSG_ACCESSO_RIUSCITO = "\nAccesso effettuato con successo -- ";
+	private static final String MSG_SUCC_REGIST = "\n\nRegistrazione avvenuta con successo.\n";
 
 	private static final String MSG_NON_VALIDO = "Username non valido, utente già registrato nel sistema. Riprova. ";
 	
@@ -103,6 +104,8 @@ public class Autenticazione {
 		
 		logica.addConfiguratore(new Configuratore(newUsername, newPassword));
 		GestorePersistenza.salvaConfiguratori(logica.getConfiguratori());
+		
+		System.out.println(MSG_SUCC_REGIST);
 	}
 	
 	/***
